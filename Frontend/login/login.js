@@ -1,11 +1,11 @@
+const botonVolver = document.getElementById("botonvolver");
+const botonEntrar = document.getElementById("botonentrar");
 
-        function validarLogin() {
-            const mail = document.getElementById('mail').value;
-            const contraseña = document.getElementById('contraseña').value;
-            if (mail === "usuario@ejemplo.com" && contraseña === "1234") {
-                location.href = 'home.html';
-            } else {
-                document.getElementById('error').textContent = "Datos incorrectos";
-            }
-        }
-   
+
+botonVolver.addEventListener("click", function() {
+    window.location.href = "../inicio/index.html";
+});
+
+botonEntrar.addEventListener("click", function() {
+    window.location.href = "../home/home.html";
+});
