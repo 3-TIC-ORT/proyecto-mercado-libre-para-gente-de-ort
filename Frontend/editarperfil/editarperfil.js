@@ -1,5 +1,4 @@
 const botonVolver = document.getElementById("botonvolver");
-const botonPublicar = document.getElementById("botonpublicar");
 
 
 
@@ -8,10 +7,11 @@ botonVolver.addEventListener("click", function() {
     window.location.href = "../home/home.html";
 });
 
+const botonGuardar = document.getElementById("botonGuardar");
 
 
 
 
-botonPublicar.addEventListener("click", function() {
+botonGuardar.addEventListener("click", function() {
     window.location.href = "../home/home.html";
 });
