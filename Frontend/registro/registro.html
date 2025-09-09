@@ -1,18 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>+
-    <script src="registro.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link rel="stylesheet" href="registro.css">
+  <script src="registro.js" defer></script>
 </head>
 <body>
-     <button id="botonvolver">Volver</button>
-     <h1>Registrarse</h1>
-        <h3>Ingrese su Mail de ORT</h3>
-        <input type="text" id="registromail" placeholder="----@est.ort.edu.ar">
-        <h3>Contraseña:</h3>
-        <input type="password" name="contraseñamail" id="contraseñamail">
-        <button id="botonentrar">Entrar</button>
+  <div class="contenedor">
+    <button id="botonvolver" >Volver</button>
+    <h3 class="title">MERCADO LIBRO</h3>
+
+   
+      <div class="fila">
+        <input type="text" placeholder="NOMBRE">
+        <input type="text" placeholder="APELLIDO">
+      </div>
+
+      <div class="fila radios">
+        <label>Género</label>
+        <label><input type="radio" name="genero" value="hombre" > Hombre</label>
+        <label><input type="radio" name="genero" value="mujer"> Mujer</label>
+        <label><input type="radio" name="genero" value="otro"> Otro</label>
+      </div>
+
+      <div class="fila radios">
+        <label>Sede</label>
+        <label><input type="radio" name="sede" value="montañeses" > Montañeses</label>
+        <label><input type="radio" name="sede" value="almagro"> Almagro</label>
+      </div>
+
+      <input type="text" placeholder="Usuario" >
+
+      <input type="password" placeholder="Contraseña" >
+      <input type="password" placeholder="Repetir contraseña" >
+
+      <button   id="botonentrar" class="botonsiguiente">Entrar ➝</button>
+    </form>
+  </div>
 </body>
 </html>

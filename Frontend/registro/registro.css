@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6e6e6; 
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .contenedor {
+    width: 420px;
+    margin: auto;
+    background-color: #fdfdfd;
+    padding: 20px;
+    border: 1px solid black;
+  }
+  
+  .title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+  
+  .formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .fila {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .fila.radios {
+    align-items: center;
+    gap: 15px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  
+  input[type="radio"] {
+    accent-color: blue;
+    border: 2px solid black;
+    width: 14px;
+    height: 14px;
+  }
+  
+  label {
+    font-size: 13px;
+  }
+  
+  .botonsiguiente {
+    width: 100%;
+    padding: 12px;
+    background-color: #0d4e96;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  
+  .botonsiguiente:hover {
+    background-color: #083567;
+  }
+  

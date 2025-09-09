@@ -1,59 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo</title>
-    <link rel="stylesheet" href="../css/catalogo.css">
-    <script src="catalogo.js" defer></script>
-             
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo</title>
+  <link rel="stylesheet" href="catalogo.css">
+  <script src="catalogo.js" defer></script>
 </head>
 <body>
-    <h1>  </h1>
-    <button id="botonvolver" class="botonvuelta">Home</button>
-    
-    <h1>Catálogo</h1>
-    <div class="search-container">
-        <input type="text" placeholder="Busca lo que quieras">
-        <button class="buscador">Buscar</button>
+  <header class="header">
+    <div class="logo">
+     <button id="botonvolver"> <img src="logo.png" alt="Logo ORT"> </button> 
     </div>
-    
-    <div class="product-grid">
-        <div class="product-card">
-            <img src="/img/descarga.jfif" >
-            <h3>Ready for First</h3>
-            <p>Macmillan Education</p>
-            <button class="botonpedir">Pedir</button>
-        </div>
-        <div class="product-card">
-            <img src="/img/descarga (3).jfif" >
-            <h3>Gold experience B1+</h3>
-            <p>Pearson</p>
-            <button class="botonpedir">Pedir</button>
-
-        </div>
-        <div class="product-card">
-            <img src="/img/descarga (2).jfif" >
-            <h3>William Shakespeare
-                Macbeth</h3>
-            <p>Colihue</p>
-            <button class="botonpedir">Pedir</button>
-
-        </div>
-        <div class="product-card">
-            <img src="/img/descarga (4).jfif" >
-            <h3>Toldot Israel 3</h3>
-            <p>ORT</p>
-            <button class="botonpedir">Pedir</button>
-
-        </div>
-        <div class="product-card">
-            <img src="/img/geo.jpg" >
-            <h3>Cuadernillo geografía 3ro</h3>
-            <p>ORT</p>
-            <button class="botonpedir">Pedir</button>
-
-        </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Iniciar tu búsqueda">
+      <button class="buscador">🔍</button>
     </div>
+    <div class="icons">
+      <span>☰</span>
+      <span>🛒</span>
+      <span>👤</span>
+    </div>
+  </header>
+
+  <div class="filters">
+    <select>
+      <option value="">Materia</option>
+    </select>
+    <select>
+      <option value="">Editorial</option>
+    </select>
+  </div>
+
+  <h2 class="title">MÁS BUSCADOS</h2>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="descarga.jfif" alt="Libro">
+      <h3>Ready for First</h3>
+      <p>Macmillan Education</p>
+      <span class="price">$XXXX</span>
+      <button class="botonpedir">Pedir</button>
+    </div>
+
+    <div class="product-card">
+      <img src="descarga (3).jfif" alt="Libro">
+      <h3>Gold experience B1+</h3>
+      <p>Pearson</p>
+      <span class="price">$XXXX</span>
+      <button class="botonpedir">Pedir</button>
+    </div>
+
+    <div class="product-card">
+      <img src="descarga (2).jfif" alt="Libro">
+      <h3>Macbeth</h3>
+      <p>Colihue</p>
+      <span class="price">$XXXX</span>
+      <button class="botonpedir">Pedir</button>
+    </div>
+
+    <div class="product-card">
+      <img src="descarga (4).jfif" alt="Libro">
+      <h3>Toldot Israel 3</h3>
+      <p>ORT</p>
+      <span class="price">$XXXX</span>
+      <button class="botonpedir">Pedir</button>
+    </div>
+  </div>
 </body>
 </html>
