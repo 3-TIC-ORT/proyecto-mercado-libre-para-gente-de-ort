@@ -1,29 +1,26 @@
 h1 {
-    color: #0077b6;
     margin-bottom: 32px;}
 
 
   .botones {
-    display: block;
     width: 100%;
-    padding: 14px 0;
+    padding: 15px 0;
     margin: 12px 0;
-    font-size: 1.1em;
-    color: #fff;
-    background: #0077b6;
+    font-size:xx-large;
     border: none;
     border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s;
+    
+    
   }
 
+  body{
+    background-color: rgb(180, 180, 180);
+  }
   .container {
-    max-width: 400px;
+    max-width: 600px;
     margin: 60px auto;
-    background: #fff;
+    background: rgb(180,180,180);
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     padding: 32px 24px;
     text-align: center;
 }

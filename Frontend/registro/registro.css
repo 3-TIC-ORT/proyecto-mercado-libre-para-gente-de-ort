@@ -6,7 +6,8 @@ body {
   }
   
   .contenedor {
-    width: 420px;
+    width: 840px;
+    height: 500px;
     margin: auto;
     background-color: #fdfdfd;
     padding: 20px;
@@ -36,35 +37,40 @@ body {
     gap: 15px;
   }
   
-  input[type="text"],
-  input[type="password"] {
+  .inputtexto {
+    border-radius: 6px;
+    width: 40%;
+    border: 1px solid black;
+    padding: 6px;
+
+  }
+  .inputcontraseña {
     flex: 1;
     padding: 6px;
     border: 1px solid black;
-    border-radius: 3px;
+    border-radius: 6px;
     text-transform: uppercase;
+    width: 40%;
   }
   
-  input[type="radio"] {
+  .inputopcion {
     accent-color: blue;
     border: 2px solid black;
     width: 14px;
     height: 14px;
   }
   
-  label {
-    font-size: 13px;
-  }
+  
   
   .botonsiguiente {
-    width: 100%;
+    width: 30%;
     padding: 12px;
     background-color: #0d4e96;
     color: white;
     font-size: 16px;
     font-weight: bold;
     border: 1px solid black;
-    border-radius: 3px;
+    border-radius: 9px;
     cursor: pointer;
     text-transform: uppercase;
   }
