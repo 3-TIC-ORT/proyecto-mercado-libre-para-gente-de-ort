@@ -7,5 +7,5 @@ botonVolver.addEventListener("click", function() {
 });
 
 botonEntrar.addEventListener("click", function() {
-    window.location.href = "../home/home.html";
+    window.location.href = "../compraoventa/compraoventa.html";
 });
