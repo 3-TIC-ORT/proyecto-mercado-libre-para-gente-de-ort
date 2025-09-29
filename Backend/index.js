@@ -7,8 +7,8 @@ let datos = JSON.parse(personas);
 // Nuevo usuario
 let nuevousuario = {
   nombre: "Juan",
-  mail: "juan@ort.edu.ar",
-  sede: "Almagro",
+  mail: "bg1373@est.ort.edu.ar",
+  sede: "Montañeses",
   password: "91218"
 };
 
