@@ -2,26 +2,7 @@
   {
     "nombre": "Juan",
     "mail": "bg1373@est.ort.edu.ar",
-    "password": "91218",
-    "sede": "Belgrano"
-  },
-  {
-    "nombre": "Juan",
-    "mail": "juan@ort.edu.ar",
-    "sede": "Belgrano",
-    "password": "91218",
-    "fotoPerfil": ""
-  },
-  {
-    "nombre": "Juan",
-    "mail": "juan@ort.edu.ar",
-    "sede": "Almagro",
-    "password": "91218"
-  },
-  {
-    "nombre": "Juan",
-    "mail": "juan@ort.edu.ar",
-    "sede": "Almagro",
+    "sede": "Montañeses",
     "password": "91218"
   }
 ]
