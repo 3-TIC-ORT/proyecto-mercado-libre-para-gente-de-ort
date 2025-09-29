@@ -10,7 +10,7 @@ let datos = JSON.parse(personas);
 //datos que me pase el front
 let nuevousuario={}
 //agrega a la lista
-datos.push(nuevousario);
+datos.push(nuevousuario);
 let Jsonnuevo = JSON.stringify(personas, null, 2);
 
 fs.writeFileSync ("Usuarios.json , Jsonnuevo");
@@ -22,7 +22,7 @@ console.log ("Se agrego el nombre con exito!!!");
 //LOGIN
 // Lee cosas del JSON y lo convierte en java
 let usuarioLOGIN= fs.readFileSync ("Usuarios.json" , "utf-8");
-let JSONLOGIN = JSON.parse(usarioLOGIN);
+let JSONLOGIN = JSON.parse(usuarioLOGIN);
 
 for (let i = 0; i < JSONLOGIN.length; i++){
     if (JSONLOGIN[i].nombre == "Juan" && JSONLOGIN[i].password == "91218") {
