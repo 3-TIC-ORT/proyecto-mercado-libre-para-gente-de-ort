@@ -1,17 +1,24 @@
+
+body {
+  background-color: rgb(226, 226, 226);
+}
+
 h1 {
-    margin-bottom: 32px;
-  font-size: xx-large;}
+  font-size: xx-large;
+margin-left: 25px;
+}
 
 
   .botonlogin {
     
     display: block;
-    width: 100%;
+    width: 62%;
     padding: 14px 0;
     margin: 12px 0;
+    margin-left: 10px;
     font-size: xx-large;
     color: #fff;
-    background: #0077b6;
+    background: #026499;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -21,17 +28,25 @@ h1 {
 
   .botonvolver {
     display: block;
-    box-shadow: #fff;
+    box-shadow:rgb(226, 226, 226);
     border-radius: 10px;
     border-width:0cap ;
+    background-color: rgb(226, 226, 226);
+    color:#026499;
+    font-size: 24px;
+    font-weight: 550;
   }
 
   
 
-  .container {
-    max-width: 600px;
-    margin: 60px auto;
-    background: #fff;
-    border-radius: 10px;
-    text-align: center;
+  
+
+
+.input {
+  width:60%;
+  height: 40px;
+  border-radius: 6px;
+margin-left: 10px;
+margin-bottom: 60px;
+padding: 10px;
 }

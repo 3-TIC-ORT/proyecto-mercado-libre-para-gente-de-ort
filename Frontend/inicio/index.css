@@ -1,25 +1,37 @@
 h1 {
-    margin-bottom: 32px;}
+    margin-bottom: 32px;
+  font-size: 64px;}
 
 
-  .botones {
-    width: 100%;
+  .botonlog{
+    width: 55%;
     padding: 15px 0;
-    margin: 12px 0;
-    font-size:xx-large;
+    margin: 15px 0;
+    font-size:24px;
     border: none;
     border-radius: 6px;
-    
-    
+    font-weight: 600;
   }
 
+.botonreg {
+  width: 50%;
+    padding: 15px 0;
+    margin: 12px 0;
+    font-size:24px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+
+
   body{
-    background-color: rgb(180, 180, 180);
+    background-color: rgb(226, 226, 226);
   }
   .container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 60px auto;
-    background: rgb(180,180,180);
+    background: rgb(226, 226, 226);
     border-radius: 10px;
     padding: 32px 24px;
     text-align: center;
