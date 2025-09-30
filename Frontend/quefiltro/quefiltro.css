@@ -1,0 +1,74 @@
+.encabezado {
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    width: 100%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;                
+    align-items: center;          
+    justify-content: center;     
+    gap: 40px;                  
+}
+
+.logo {
+    width: 180px;
+    height: 100px;
+    margin-left: px;
+}
+
+input {
+    height: 30px;
+    width: 40%;
+    margin-left: 100px;              
+    margin-bottom: 10px;
+    border-radius: 64px;
+}
+
+
+.lineagruesa {
+    width: 100%;
+    height: 4px;
+    background-color: black;
+}
+
+
+.botonaños {
+    height: 250px;
+    width: 30%;
+    margin-left: 200px;
+ font-size: 30px;
+ background-color: rgb(37, 66, 151);
+ color: white;
+         
+ }
+ 
+ 
+ 
+ .botonmaterias {
+     height: 250px;
+    width: 30%;
+    margin-left: 130px;
+ font-size: 30px;
+ background-color: rgb(255, 255, 255);
+ }
+ 
+ 
+ 
+    h1 {
+     text-align: center;
+     margin-top: 50px;
+     margin-bottom: 40px;
+     font-size: 35px;
+     font-weight: 1000;
+    }
+
+
+
+    .botonlogo {
+        height: 70px;
+margin-bottom: 40px;
+        width: 170px;
+        margin-left: -450px;
+        background-color: white;
+        border-color: white;
+        box-shadow: white;
+    }
