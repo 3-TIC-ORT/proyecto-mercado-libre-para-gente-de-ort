@@ -1,3 +1,22 @@
+
+
+
+const botonVolver = document.getElementById("botonvolver");
+
+botonVolver.addEventListener("click", function() {
+    window.location.href = "../quefiltro/quefiltro.html"; 
+});
+
+
+
+const boton7MO=document.getElementById("boton7mo");
+
+boton7MO.addEventListener("click",function(){
+   window.location.href = "../filtromateria/filtromateria.html";
+});
+
+
+
 const boton1RO=document.getElementById("boton1ero");
 
 
