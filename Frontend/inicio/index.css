@@ -3,6 +3,12 @@ h1 {
   font-size: 64px;}
 
 
+
+  .logo {
+    width: 300px;
+    height: 150px;
+  }
+
   .botonlog{
     width: 55%;
     padding: 15px 0;

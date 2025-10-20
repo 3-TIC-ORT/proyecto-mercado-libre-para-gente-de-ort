@@ -1,30 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publicar</title>
-    <script src="publicar.js"></script>
-    <link rel="stylesheet" href="publicar.css">
-    <script src="publicar.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar libro</title>
+  <link rel="stylesheet" href="publicar.css">
 </head>
 <body>
-    <div class="container">
-         <button id="botonvolver" class="botones">Home</button>
-<h1>Publicar Objeto</h1>
-<h2>Ingresa Nombre del Producto</h2>
-<input type="text" name="nombreproductopublicar" id="nombreproductopublicar">
-<h2>Descripción</h2>
-<input type="text" name="descripcionproductopublicar" id="descripcionproductopublicar">
-<h2>Seleccionar Sede</h2>
-<select name="sedeproductopublicar" id="sedeproductopublicar" >
-     <option value="sede1">Belgrano</option>
-    <option value="sede2">Yatay</option>
-    </select>
-    <h2>Agregá una imagen de referencia</h2>
-    <input type="file" name="imagenproductopublicar" id="imagenproductopublicar">
-    <h1>   </h1>
-    <button id="botonpublicar" class="botones">Publicar</button>
-</div>
+  <header>
+    <img src="logo.png" alt="Logo" class="logo">
+    <div class="iconos">
+      <img src="campana.png" alt="Notificaciones" class="icono">
+      <img src="usuario.png" alt="Usuario" class="icono">
+    </div>
+  </header>
+
+  <main>
+    <div class="contenedor">
+      <div class="portada">
+        <img src="placeholder.png" alt="Portada del libro" class="img-portada">
+        <div class="mas">+</div>
+      </div>
+
+      <div class="formulario">
+        <label>Nombre del libro</label>
+        <input type="text" placeholder="">
+
+        <label>Aula</label>
+        <input type="text" placeholder="">
+
+        <select>
+          <option selected>Seleccionar año</option>
+          <option>1°</option>
+          <option>2°</option>
+          <option>3°</option>
+        </select>
+
+        <select>
+          <option selected>Seleccionar materia</option>
+          <option>Matemática</option>
+          <option>Lengua</option>
+          <option>Ciencias</option>
+        </select>
+
+        <button>Publicar</button>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
