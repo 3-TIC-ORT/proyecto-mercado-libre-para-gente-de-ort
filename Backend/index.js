@@ -64,6 +64,45 @@ subscribePOSTEvent("loginUsuario", (data) => {
   }
 });
 
+subscribePOSTEvent("venderLibro", (data) => {
+  // Recibe los datos desde el front o desde un tester
+  let libro = data.libro;
+  let materia = data.materia;
+  let año = data.año;
+  let sede = data.sede;
+  let precio = data.precio;
+  let foto = data.foto;
+  let descripcion = data.descripcion;
+
+  // 1️ Leer lo que hay en el archivo
+  let textoLibros = fs.readFileSync("Libros.json", "utf-8");
+
+  // 2️ Convertir ese texto a una lista de objetos
+  let listaLibros = JSON.parse(textoLibros);
+
+  // 3️ Crear un nuevo objeto usuario
+  let nuevoLibro = {
+  libro: libro,
+  materia: materia,
+  año: año,
+  sede: sede,
+  precio: precio,
+  foto: foto,
+  descripcion: descripcion
+  };
+
+  // 4 Agregar el nuevo usuario a la lista
+  listaLibros.push(nuevoLibro);
+
+  // 5️ Volver a convertir a JSON
+  let jsonLibro = JSON.stringify(listaLibros, null, 2);
+
+  // 6️ Guardar el archivo actualizado
+  fs.writeFileSync("Libros.json", jsonLibro);
+
+  console.log("Se ha publicado el libro" + libro);
+  return { mensaje: "Libro publicado con exito" };
+});
 
 //  ARRANCAR SERVIDOR SOQUETIC
 
