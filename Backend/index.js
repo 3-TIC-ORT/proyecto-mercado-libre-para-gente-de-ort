@@ -10,7 +10,7 @@ subscribePOSTEvent("registrarUsuario", (data) => {
   let mail = data.mail;
   let sede = data.sede;
   let password = data.password;
-
+  let genero = data.genero;
   // 1️ Leer lo que hay en el archivo
   let texto = fs.readFileSync("Usuarios.json", "utf-8");
 
@@ -22,7 +22,8 @@ subscribePOSTEvent("registrarUsuario", (data) => {
     nombre: nombre,
     mail: mail,
     sede: sede,
-    password: password
+    password: password,
+    genero: genero
   };
 
   // 4 Agregar el nuevo usuario a la lista
