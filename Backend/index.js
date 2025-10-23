@@ -34,8 +34,8 @@ subscribePOSTEvent("registrarUsuario", (data) => {
   // 6️ Guardar el archivo actualizado
   fs.writeFileSync("Usuarios.json", jsonNuevo);
 
-  console.log("✅ Usuario registrado con éxito: " + nombre);
-  return { mensaje: "✅ Usuario registrado con éxito" };
+  console.log("Usuario registrado con éxito: " + nombre);
+  return { mensaje: "Usuario registrado con éxito" };
 });
 
 
@@ -53,19 +53,19 @@ subscribePOSTEvent("loginUsuario", (data) => {
   for (let i = 0; i < lista.length; i++) {
     if (lista[i].mail == mail && lista[i].password == password) {
       encontrado = true;
-      console.log("✅ Bienvenido " + lista[i].nombre);
-      return { mensaje: "✅ Bienvenido " + lista[i].nombre };
+      console.log("Bienvenido " + lista[i].nombre);
+      return { mensaje: "Bienvenido " + lista[i].nombre };
     }
   }
 
   if (encontrado == false) {
-    console.log("❌ Usuario o contraseña incorrectos");
-    return { error: "❌ Usuario o contraseña incorrectos" };
+    console.log("Usuario o contraseña incorrectos");
+    return { error: "Usuario o contraseña incorrectos" };
   }
 });
 
 subscribePOSTEvent("venderLibro", (data) => {
-  // Recibe los datos desde el front o desde un tester
+  // Recibe los datos desde el front
   let libro = data.libro;
   let materia = data.materia;
   let año = data.año;
@@ -80,7 +80,7 @@ subscribePOSTEvent("venderLibro", (data) => {
   // 2️ Convertir ese texto a una lista de objetos
   let listaLibros = JSON.parse(textoLibros);
 
-  // 3️ Crear un nuevo objeto usuario
+  // 3️ Crear un nuevo objeto libro
   let nuevoLibro = {
   libro: libro,
   materia: materia,
@@ -91,7 +91,7 @@ subscribePOSTEvent("venderLibro", (data) => {
   descripcion: descripcion
   };
 
-  // 4 Agregar el nuevo usuario a la lista
+  // 4 Agregar el nuevo libro a la lista
   listaLibros.push(nuevoLibro);
 
   // 5️ Volver a convertir a JSON
