@@ -5,7 +5,7 @@ import { subscribePOSTEvent, startServer } from "soquetic";
 //  REGISTRAR USUARIO
 
 subscribePOSTEvent("registrarUsuario", (data) => {
-  // Recibe los datos desde el front o desde un tester
+  // Recibe los datos desde el front
   let nombre = data.nombre;
   let mail = data.mail;
   let sede = data.sede;
