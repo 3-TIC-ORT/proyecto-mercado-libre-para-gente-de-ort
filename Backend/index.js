@@ -80,7 +80,7 @@ subscribePOSTEvent("venderLibro", (data) => {
   // 2️ Convertir ese texto a una lista de objetos
   let listaLibros = JSON.parse(textoLibros);
 
-  // 3️ Crear un nuevo objeto libro
+  // 3️ Crear un nuevo libro
   let nuevoLibro = {
   libro: libro,
   materia: materia,
