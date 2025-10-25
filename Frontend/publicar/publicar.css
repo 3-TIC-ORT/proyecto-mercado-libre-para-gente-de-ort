@@ -9,65 +9,47 @@ body {
   background-color: #ffffff;
 }
 
-/* ---------- HEADER ---------- */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  padding: 10px 20px;
-  border-bottom: 1px solid #ccc;
+html, body {
+  height: 100%;
 }
 
-.logo {
-  height: 40px;
-}
 
-.iconos {
-  display: flex;
-  gap: 15px;
-}
 
-.icono {
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
-}
 
-/* ---------- MAIN ---------- */
-main {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
+
+
 
 .contenedor {
   display: flex;
   align-items: center;
   background-color: #1f4d78;
-  padding: 30px;
-  border-radius: 10px;
   gap: 40px;
+  width: 100%;
+  min-height: 870px; 
+  border-radius: 0; 
 }
 
-/* ---------- PORTADA ---------- */
 .portada {
   position: relative;
-  width: 180px;
-  height: 240px;
-  background-color: #c0c0c0;
+  width: 25%;
+  height: 650px;
+  background-color: #ffffff;
   border: 3px solid black;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 100px;
+  margin-bottom: 60px;
+  margin-right: 400px;
 }
 
 .mas {
   position: absolute;
-  font-size: 60px;
+  font-size: 400px;
   color: black;
   font-weight: bold;
+  pointer-events: none;
 }
 
 .img-portada {
@@ -78,34 +60,43 @@ main {
   display: none; 
 }
 
-/* ---------- FORMULARIO ---------- */
 .formulario {
   display: flex;
   flex-direction: column;
   gap: 10px;
   color: white;
+
 }
 
 .formulario label {
-  font-size: 14px;
+  font-size: 20px;
   margin-bottom: -5px;
+  stroke-width: 2px solid black;
 }
 
-input, select {
+.inputformulario, select {
   padding: 8px 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   outline: none;
-  width: 220px;
+  width: 400px;
+  height: 55px;
   font-size: 14px;
+  margin-top: 20px;
+stroke-width: 2px solid black;
 }
 
 select {
   background-color: white;
   font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 40px;
+  border-radius: 10px;
+  stroke-width: 2px solid black;
+  font-size: 20px;
 }
 
-button {
+.botonpublicar {
   background-color: #d6b15a;
   color: white;
   font-weight: bold;
@@ -118,6 +109,67 @@ button {
   transition: 0.2s;
 }
 
-button:hover {
+.botonpublicar:hover {
   background-color: #b89242;
+}
+
+
+.encabezado {
+  background-color: #fff;
+  height: 110px;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 0 24px;
+  gap: 16px;
+}
+
+.botonlogo {
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.encabezado .logo {
+  width: 150px;
+  height: auto;
+  display: block;
+  height: 110px;
+}
+
+.buscador-input {
+  flex: 1 1 0;
+  max-width: 720px;
+  height: 40px;
+  border-radius: 64px;
+  padding: 0 20px;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin: 0 12px;
+  border: 1px solid #ccc;
+}
+
+
+
+.lineagruesa {
+  width: 100%;
+  height: 6px;
+  background-color: black;
+  margin: 0 0 0px 0;
+  position: relative;
+  z-index: 9;
+}
+
+.input-portada {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+
 }

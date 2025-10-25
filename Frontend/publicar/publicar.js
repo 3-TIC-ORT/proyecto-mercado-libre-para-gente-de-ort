@@ -5,7 +5,7 @@ const botonPublicar = document.getElementById("botonpublicar");
 
 
 botonVolver.addEventListener("click", function() {
-    window.location.href = "../home/home.html";
+    window.location.href = "../compraoventa/compraoventa.html";
 });
 
 
@@ -13,5 +13,5 @@ botonVolver.addEventListener("click", function() {
 
 
 botonPublicar.addEventListener("click", function() {
-    window.location.href = "../home/home.html";
+    window.location.href = "../mispublicaciones/mispublicaciones.html";
 });

@@ -8,7 +8,7 @@ botonComprar.addEventListener("click", function() {
 });
 
 botonVender.addEventListener("click", function() {
-    window.location.href = "../publicar/publicar.html";
+    window.location.href = "../mispublicaciones/mispublicaciones.html";
 });
 
 botonVolver.addEventListener("click", function() {

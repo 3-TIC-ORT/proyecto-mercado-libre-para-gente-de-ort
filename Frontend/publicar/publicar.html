@@ -5,29 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicar libro</title>
   <link rel="stylesheet" href="publicar.css">
+  <script src="publicar.js" defer></script>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo" class="logo">
-    <div class="iconos">
-      <img src="campana.png" alt="Notificaciones" class="icono">
-      <img src="usuario.png" alt="Usuario" class="icono">
-    </div>
-  </header>
+  
+<header>
+  <div class="encabezado">
+    <button id="botonvolver" class="botonlogo">
+      <img src="image.png" class="logo" alt="logo">
+    </button>
 
-  <main>
+    <input type="text" id="buscador" class="buscador-input" placeholder="Buscar...">
+
+    <div class="espacio-derecha" aria-hidden="true"></div>
+  </div>
+
+  <div class="lineagruesa"></div>
+</header>
+
+  
     <div class="contenedor">
+      
       <div class="portada">
+        <input type="file" id="inputPortada" class="input-portada" accept="image/*">
         <img src="placeholder.png" alt="Portada del libro" class="img-portada">
         <div class="mas">+</div>
       </div>
 
       <div class="formulario">
         <label>Nombre del libro</label>
-        <input type="text" placeholder="">
+        <input class="inputformulario" type="text" placeholder="">
 
         <label>Aula</label>
-        <input type="text" placeholder="">
+        <input class="inputformulario" type="text" placeholder="">
 
         <select>
           <option selected>Seleccionar año</option>
@@ -43,9 +53,9 @@
           <option>Ciencias</option>
         </select>
 
-        <button>Publicar</button>
+        <button class="botonpublicar" id="botonpublicar">Publicar</button>
       </div>
     </div>
-  </main>
+  
 </body>
 </html>
