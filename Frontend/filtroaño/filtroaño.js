@@ -51,3 +51,11 @@ boton5TO.addEventListener("click",function(){
 });
 
 
+
+
+const botonNotificaciones = document.getElementById("botonnotificaciones");
+
+
+botonNotificaciones.addEventListener("click", function(){
+   window.location.href = "../notificaciones/notificaciones.html"
+})

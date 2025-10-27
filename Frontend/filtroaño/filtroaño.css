@@ -40,13 +40,30 @@ input {
     border-radius: 64px;
     font-size: 18px;
     padding: 0 20px;
+    margin-left:-200px
+
 }
 
 
 
+.botonnotis{
+    height: 70px;
+    width: 70px;
+    margin-right: -300px;
+    margin-left: 100px;
+
+
+}
+
+.imgnotis {
+    height: 70px;
+width: 70px;
+margin-left: -8px;
+margin-top:-3px;
+}
 
 .lineagruesa {
-    width: 100%;
+    width: 105%;
     height: 4px;
     background-color: black;
     margin-bottom: 30px;
