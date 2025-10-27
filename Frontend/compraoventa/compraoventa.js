@@ -1,6 +1,8 @@
 const botonComprar = document.getElementById("botoncomprar");
 const botonVender = document.getElementById("botonvender");
 const botonVolver = document.getElementById("botonvolver");
+const botonNotificaciones = document.getElementById("botonnotificaciones");
+
 
 
 botonComprar.addEventListener("click", function() {
@@ -14,3 +16,7 @@ botonVender.addEventListener("click", function() {
 botonVolver.addEventListener("click", function() {
     window.location.href = "../inicio/index.html";
 });
+
+botonNotificaciones.addEventListener("click", function(){
+    window.location.href = "../notificaciones/notificaciones.html"
+})
