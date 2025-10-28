@@ -74,6 +74,8 @@ subscribePOSTEvent("venderLibro", (data) => {
   let precio = data.precio;
   let foto = data.foto;
   let descripcion = data.descripcion;
+  let nombreVendedor = data.nombreVendedor;
+  let mailVendedor = data.mailVendedor;
 
   // 1️ Leer lo que hay en el archivo
   let textoLibros = fs.readFileSync("Libros.json", "utf-8");
@@ -89,7 +91,9 @@ subscribePOSTEvent("venderLibro", (data) => {
   sede: sede,
   precio: precio,
   foto: foto,
-  descripcion: descripcion
+  descripcion: descripcion,
+  nombreVendedor: nombreVendedor,
+  mailVendedor: mailVendedor
   };
 
   // 4 Agregar el nuevo libro a la lista
