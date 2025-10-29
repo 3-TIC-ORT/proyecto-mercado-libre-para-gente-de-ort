@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="perfil.css">
+    <script src="perfil.js" defer></script>
 </head>
 <body>
     <header>
         <h1>MERCADO LIBRO</h1>
-        <a href="#" class="home-icon">🏠</a>
+        <button id="botonvolver"><a href="#" class="home-icon">🏠</a> </button>
     </header>
     <div class="container">
         <div class="profile-icon">
             <span class="icon">👤</span>
             <span class="edit-icon">✏️</span>
         </div>
-        <form>
+        
             <label for="nombre">NOMBRE</label>
             <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre">
             
@@ -26,8 +27,7 @@
             <label for="sede">SEDE</label>
             <input type="text" id="sede" name="sede" placeholder="Ingrese su sede">
             
-            <button type="submit" class="botones">GUARDAR</button>
-        </form>
+            <button  id="botonguardar" class="botones">GUARDAR</button>
     </div>
 </body>
 </html>

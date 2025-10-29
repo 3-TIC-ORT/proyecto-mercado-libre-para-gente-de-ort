@@ -2,7 +2,7 @@ const botonComprar = document.getElementById("botoncomprar");
 const botonVender = document.getElementById("botonvender");
 const botonVolver = document.getElementById("botonvolver");
 const botonNotificaciones = document.getElementById("botonnotificaciones");
-
+const botonPerfil = document.getElementById("botonperfil")
 
 
 botonComprar.addEventListener("click", function() {
@@ -19,4 +19,8 @@ botonVolver.addEventListener("click", function() {
 
 botonNotificaciones.addEventListener("click", function(){
     window.location.href = "../notificaciones/notificaciones.html"
+})
+
+botonPerfil.addEventListener("click", function() {
+    window.location.href = "../perfil/perfil.html"
 })

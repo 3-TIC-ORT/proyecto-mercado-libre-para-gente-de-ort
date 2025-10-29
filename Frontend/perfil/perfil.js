@@ -1,16 +1,16 @@
 const botonVolver = document.getElementById("botonvolver");
+const botonGuardar = document.getElementById("botonguardar")
 
 
 
 
 botonVolver.addEventListener("click", function() {
-    window.location.href = "../home/home.html";
+    window.location.href = "../compraoventa/compraoventa.html";
 });
-const botonEditarperfil = document.getElementById("botoneditarperfil");
 
 
 
 
-botonEditarperfil.addEventListener("click", function() {
-    window.location.href = "../editarperfil/editarperfil.html";
+botonGuardar.addEventListener("click", function() {
+    window.location.href = "../compraoventa/compraoventa.html";
 });
