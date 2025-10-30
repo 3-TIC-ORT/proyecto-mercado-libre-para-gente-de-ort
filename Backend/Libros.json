@@ -9,5 +9,16 @@
     "descripcion": "",
     "nombreVendedor": "Juan",
     "mailVendedor": "bg1373@est.ort.edu.ar"
+  },
+  {
+    "libro": "Manteca",
+    "materia": "matematica",
+    "año": "3",
+    "sede": "Montañeses",
+    "precio": "30.000",
+    "foto": "sin-foto.jpg",
+    "descripcion": "",
+    "nombreVendedor": "Sebastian",
+    "mailVendedor": "bs2896@est.ort.edu.ar"
   }
 ]
