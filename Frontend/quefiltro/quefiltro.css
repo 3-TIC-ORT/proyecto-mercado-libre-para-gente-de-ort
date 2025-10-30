@@ -13,19 +13,9 @@ body {
     gap: 40px;                  
 }
 
-.logo {
-    width: 180px;
-    height: 100px;
-    margin-left: px;
-}
 
-input {
-    height: 30px;
-    width: 40%;
-    margin-left: 100px;              
-    margin-bottom: 10px;
-    border-radius: 64px;
-}
+
+
 
 
 .lineagruesa {
@@ -67,12 +57,76 @@ input {
 
 
 
+    .logo {
+        width: 100px;
+        height: 80px;
+        margin-left: px;
+    }
+   
+    input {
+        height: 30px;
+        width: 40%;
+        margin-left: 100px;              
+        margin-bottom: 10px;
+        border-radius: 64px;
+        margin-right: 100px;
+    
+    }
+   
     .botonlogo {
-        height: 70px;
-margin-bottom: 40px;
-        width: 170px;
+        height: 80px;
+margin-bottom: 30px;
+        width: 100px;
         margin-left: -450px;
         background-color: white;
         border-color: white;
         box-shadow: white;
+        margin-right: 150px;
+
     }
+
+    
+.imgperfil {
+    height: 70px;
+    width: 70px;
+    margin-left: -8px;
+    margin-top:-3px;
+}
+
+
+.botonperf {
+    height: 70px;
+    width: 70px;
+    margin-left:150px;
+    margin-right: -300px;
+}
+
+
+.botonhom {
+    height: 70px;
+    width: 70px;
+    margin-left: 250px;
+    margin-right: -400px;
+    
+}
+
+.imghome {
+    height: 70px;
+    width: 70px;
+    margin-left: -8px;
+    margin-top:-3px;
+}
+
+.botonnotis{
+    height: 70px;
+    width: 70px;
+    margin-right: -200px;
+
+}
+
+.imgnotis {
+    height: 70px;
+width: 70px;
+margin-left: -8px;
+margin-top:-3px;
+}
