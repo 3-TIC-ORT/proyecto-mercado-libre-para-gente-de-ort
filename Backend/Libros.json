@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "libro": "El guardian entre el centeno",
+    "materia": "Lengua",
+    "año": "3",
+    "sede": "Montañeses",
+    "precio": "15.000",
+    "foto": "sin-foto.jpg",
+    "descripcion": "",
+    "nombreVendedor": "Juan",
+    "mailVendedor": "bg1373@est.ort.edu.ar"
+  }
+]

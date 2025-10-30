@@ -1,4 +1,5 @@
 import fs from "fs";
+import "./pedidoLibro.js";
 import { subscribePOSTEvent, startServer } from "soquetic";
 
 
@@ -107,31 +108,6 @@ subscribePOSTEvent("venderLibro", (data) => {
 
   console.log("Se ha publicado el libro" + libro);
   return { mensaje: "Libro publicado con exito" };
-});
-
-
-subscribePOSTEvent("pedirLibro", (data) => {
-  let tituloLibro = data.tituloLibro;
-
-  // Leer la lista de libros
-  let texto = fs.readFileSync("Libros.json", "utf-8");
-  let listaLibros = JSON.parse(texto);
-
-  // Buscar el libro por nombre
-  let libroEncontrado = listaLibros.find(l => l.libro === tituloLibro);
-
-  if (!libroEncontrado) {
-    return { error: "❌ No se encontró el libro" };
-  }
-
-  // Devolver los datos del vendedor
-  return {
-    mensaje: "✅ Pedido registrado",
-    vendedor: {
-      nombre: libroEncontrado.nombreVendedor,
-      mail: libroEncontrado.mailVendedor
-    }
-  };
 });
 
 
