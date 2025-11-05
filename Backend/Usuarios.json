@@ -10,5 +10,16 @@
     "mail": "bs2896@est.ort.edu.ar",
     "sede": "Montañeses",
     "password": "91218"
+  },
+  {
+    "nombre": "martin",
+    "sede": "montañeses",
+    "password": "1234",
+    "genero": "hombre"
+  },
+  {
+    "nombre": "sebita",
+    "sede": "montañeses",
+    "genero": "hombre"
   }
 ]

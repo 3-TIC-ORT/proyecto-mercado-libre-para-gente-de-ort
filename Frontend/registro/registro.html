@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
   <link rel="stylesheet" href="registro.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
   <script src="registro.js" defer></script>
 </head>
 <body>
@@ -15,28 +17,28 @@
 
    
       <div class="fila">
-        <input type="text" class="inputtexto" placeholder="NOMBRE">
-        <input type="text" class="inputtexto" placeholder="APELLIDO">
+        <input type="text" class="inputtexto" id="nombre" placeholder="NOMBRE">
+        <input type="text" class="inputtexto" id="apellido" placeholder="APELLIDO">
       </div>
 
       <div class="fila radios">
         <h4>Género<h4>
-        <label><input type="radio" name="genero" class="inputopcion" value="hombre" > Hombre</label>
-        <label><input type="radio" name="genero" class="inputopcion" value="mujer"> Mujer</label>
-        <label><input type="radio" name="genero" class="inputopcion" value="otro"> Otro</label>
+        <label><input type="radio" name="genero" class="inputopcion" id="hombre" value="hombre" > Hombre</label>
+        <label><input type="radio" name="genero" class="inputopcion" id="mujer" value="mujer"> Mujer</label>
+        <label><input type="radio" name="genero" class="inputopcion" id="otro" value="otro"> Otro</label>
       </div>
 
       <div class="fila radios">
         <h4>Sede</h4>
-        <label><input type="radio" name="sede" class="inputopcion" value="montañeses" > Montañeses</label>
-        <label><input type="radio" name="sede" class="inputopcion" value="almagro"> Almagro</label>
+        <label><input type="radio" name="sede" class="inputopcion" id="montañeses" value="montañeses" > Montañeses</label>
+        <label><input type="radio" name="sede" class="inputopcion" id="almagro" value="almagro"> Almagro</label>
       </div>
 <h1>   </h1>
-      <input type="text" class="inputtexto" placeholder="Usuario" >
+      <input type="text" class="inputtexto" id="usuario" placeholder="Usuario" >
 <h1> </h1>
-      <input type="password" class="inputcontraseña" placeholder="Contraseña" >
+      <input type="password" class="inputcontraseña" id="contraseña" placeholder="Contraseña" >
       <h1> </h1>
-      <input type="password" class="inputcontraseña" placeholder="Repetir contraseña" >
+      <input type="password" class="inputcontraseña" id="repcontraseña" placeholder="Repetir contraseña" >
 <h1>                                                                                               </h1>
       <button   id="botonentrar" class="botonsiguiente">Siguiente ➝</button>
     </form>
