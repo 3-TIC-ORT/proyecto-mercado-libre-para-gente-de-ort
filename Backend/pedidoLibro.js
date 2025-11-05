@@ -1,5 +1,5 @@
 import fs from "fs";
-import { subscribePOSTEvent } from "soquetic";
+import { subscribePOSTEvent, realTimeEvent } from "soquetic";
 
 // PEDIR LIBRO
 subscribePOSTEvent("pedirLibro", (data) => {
@@ -19,6 +19,13 @@ subscribePOSTEvent("pedirLibro", (data) => {
 
   // Mostrar resultado en consola
   console.log("📗 Pedido de libro:", libroEncontrado.libro, "→ Vendedor:", libroEncontrado.nombreVendedor);
+
+  // 🔔 Enviar notificación en tiempo real al vendedor
+  realTimeEvent("nuevoPedido", {
+    mensaje: "¡Tienes un nuevo pedido para tu libro!",
+    libro: libroEncontrado.libro,
+    mailVendedor: libroEncontrado.mailVendedor
+  });
 
   // Devolver los datos del vendedor al front
   return {
