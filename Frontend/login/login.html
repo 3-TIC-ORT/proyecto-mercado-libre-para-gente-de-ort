@@ -4,27 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <script  src="login.js" defer></script>
     <link rel="stylesheet" href="login.css">
+    
+    <!-- Scripts de SoqueTIC (en este orden) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+    <script src="login.js" defer></script>
 </head>
 <body>
-     <button id="botonvolver" class="botonvolver">MERCADO LIBRO</button>
-     <div class="container">
+    <button id="botonvolver" class="botonvolver">MERCADO LIBRO</button>
+    <div class="container">
         <h1>EMAIL</h1>
-        <input type="text" id="mail" class="input" placeholder="Introduce tu mail">
+        <input type="text" id="usuario" class="input" placeholder="Introduce tu mail">
         <h1>CONTRASEÑA</h1>
-        <input type="password" name="contraseña"  class="input"  id="contraseña">
-    <h1>  </h1>
- <button id="botonentrar" class="botonlogin">Siguiente</button>
-    
-
-</div>
-
-            
-       
+        <input type="password" id="contraseña" class="input" placeholder="Introduce tu contraseña">
+        <h1></h1>
+        <button id="botonentrar" class="botonlogin">Siguiente</button>
+    </div>
 </body>
-
-
-
-
 </html>

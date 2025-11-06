@@ -1,7 +1,8 @@
+// Conectar al servidor
+connect2Server(3000);
+
 const botonVolver = document.getElementById("botonvolver");
 const botonEntrar = document.getElementById("botonentrar");
-
-connect2Server(3000);
 
 botonVolver.addEventListener("click", function() {
   window.location.href = "../inicio/index.html";
@@ -28,15 +29,26 @@ botonEntrar.addEventListener("click", function(event) {
     return;
   }
 
+  // Validar que el usuario contenga @
+  if (!usuario.includes("@")) {
+    alert("El email debe contener un @");
+    return;
+  }
+
+  if (contraseña !== repcontraseña) {
+    alert("Las contraseñas no coinciden");
+    return;
+  }
+
   const userData = { nombre, apellido, usuario, contraseña, genero, sede };
 
   postEvent("registrarUsuario", userData, function(response) {
     console.log("Respuesta del servidor:", response);
-    if (response.success) {
-      alert(response.message);
-      window.location.href = "../compraoventa/compraoventa.html";
-    } else {
-      alert("Error en el registro: " + response.message);
+    
+    if (response.mensaje) {
+      window.location.href = "../login/login.html";
+    } else if (response.error) {
+      alert("Error en el registro: " + response.error);
     }
   });
 });

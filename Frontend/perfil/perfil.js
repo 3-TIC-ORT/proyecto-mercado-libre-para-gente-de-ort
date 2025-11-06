@@ -1,10 +1,10 @@
-const botonVolver = document.getElementById("botonvolver");
+const botonHom = document.getElementById("botonhom");
 const botonGuardar = document.getElementById("botonguardar")
 
 
 
 
-botonVolver.addEventListener("click", function() {
+botonHom.addEventListener("click", function() {
     window.location.href = "../compraoventa/compraoventa.html";
 });
 
@@ -14,3 +14,5 @@ botonVolver.addEventListener("click", function() {
 botonGuardar.addEventListener("click", function() {
     window.location.href = "../compraoventa/compraoventa.html";
 });
+
+

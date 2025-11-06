@@ -21,5 +21,69 @@
     "nombre": "sebita",
     "sede": "montañeses",
     "genero": "hombre"
+  },
+  {
+    "nombre": "gonza",
+    "apellido": "mayer",
+    "mail": "gonzamayer@gmail.com",
+    "password": "987",
+    "genero": "hombre",
+    "sede": "montañeses"
+  },
+  {
+    "nombre": "sebi",
+    "apellido": "szvalb",
+    "mail": "sebiszvalb@gmasil.com",
+    "password": "1234",
+    "genero": "hombre",
+    "sede": "montañeses"
+  },
+  {
+    "nombre": "a",
+    "apellido": "a",
+    "mail": "a",
+    "password": "1",
+    "genero": "hombre",
+    "sede": "montañeses"
+  },
+  {
+    "nombre": "simon",
+    "apellido": "alfa",
+    "mail": "simonalfa@est.ort.edu.ar",
+    "password": "12",
+    "genero": "hombre",
+    "sede": "montañeses"
+  },
+  {
+    "nombre": "a",
+    "apellido": "a",
+    "mail": "a@",
+    "password": "12",
+    "genero": "hombre",
+    "sede": "montañeses"
+  },
+  {
+    "nombre": "gonza",
+    "apellido": "mayer",
+    "mail": "gonzamr@gmail.com",
+    "password": "123",
+    "genero": "hombre",
+    "sede": "montañeses"
+  },
+  {
+    "nombre": "hola",
+    "apellido": "chau",
+    "mail": "sebi@",
+    "password": "43",
+    "genero": "hombre",
+    "sede": "montañeses"
+  },
+  {
+    "nombre": "manu",
+    "apellido": "kaplan",
+    "mail": "manu@gmail.com",
+    "password": "1234",
+    "genero": "hombre",
+    "sede": "montañeses"
   }
 ]

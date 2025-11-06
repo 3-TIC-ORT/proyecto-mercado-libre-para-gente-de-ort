@@ -5,65 +5,57 @@ import { subscribePOSTEvent, startServer, realTimeEvent } from "soquetic";
 
 //  REGISTRAR USUARIO
 
+// REGISTRO DE USUARIO
 subscribePOSTEvent("registrarUsuario", (data) => {
-  // Recibe los datos desde el front
-  let nombre = data.nombre;
-  let mail = data.mail;
-  let sede = data.sede;
-  let password = data.contraseña;
-  let genero = data.genero;
-  // 1️ Leer lo que hay en el archivo
-  let texto = fs.readFileSync("Usuarios.json", "utf-8");
+  let { nombre, apellido, usuario, contraseña, genero, sede } = data;
 
-  // 2️ Convertir ese texto a una lista de objetos
+  // Leer usuarios existentes
+  let texto = fs.readFileSync("Usuarios.json", "utf-8");
   let lista = JSON.parse(texto);
 
-  // 3️ Crear un nuevo objeto usuario
+  // Verificar si el usuario ya existe
+  let usuarioExistente = lista.find(u => u.mail === usuario);
+  if (usuarioExistente) {
+    return { error: "El usuario ya existe" };
+  }
+
+  // Crear nuevo usuario
   let nuevoUsuario = {
     nombre: nombre,
-    mail: mail,
-    sede: sede,
-    password: password,
-    genero: genero
+    apellido: apellido,
+    mail: usuario,
+    password: contraseña,
+    genero: genero,
+    sede: sede
   };
 
-  // 4 Agregar el nuevo usuario a la lista
+  // Agregar a la lista y guardar
   lista.push(nuevoUsuario);
+  fs.writeFileSync("Usuarios.json", JSON.stringify(lista, null, 2));
 
-  // 5️ Volver a convertir a JSON
-  let jsonNuevo = JSON.stringify(lista, null, 2);
-
-  // 6️ Guardar el archivo actualizado
-  fs.writeFileSync("Usuarios.json", jsonNuevo);
-
-  console.log("Usuario registrado con éxito: " + nombre);
-  return { mensaje: "Usuario registrado con éxito" };
+  console.log("Usuario registrado: " + nombre);
+  return { mensaje: "Usuario registrado exitosamente" };
 });
-
-
-//  LOGIN DE USUARIO
-
+// LOGIN DE USUARIO
 subscribePOSTEvent("loginUsuario", (data) => {
   let mail = data.mail;
   let password = data.password;
 
+  // Leer el archivo de usuarios
   let texto = fs.readFileSync("Usuarios.json", "utf-8");
   let lista = JSON.parse(texto);
 
-  let encontrado = false;
-
+  // Buscar usuario en la lista
   for (let i = 0; i < lista.length; i++) {
-    if (lista[i].mail == mail && lista[i].password == password) {
-      encontrado = true;
-      console.log("Bienvenido " + lista[i].nombre);
+    if (lista[i].mail === mail && lista[i].password === password) {
+      console.log("Login exitoso: " + lista[i].nombre);
       return { mensaje: "Bienvenido " + lista[i].nombre };
     }
   }
 
-  if (encontrado == false) {
-    console.log("Usuario o contraseña incorrectos");
-    return { error: "Usuario o contraseña incorrectos" };
-  }
+  // Si no se encontró
+  console.log("Usuario o contraseña incorrectos");
+  return { error: "Usuario o contraseña incorrectos" };
 });
 
 subscribePOSTEvent("venderLibro", (data) => {
