@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mis Publicaciones</title>
     <link rel="stylesheet" href="mispublicaciones.css">
+    
+    <!-- Scripts de SoqueTIC -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
     <script src="mispublicaciones.js" defer></script>
 </head>
 <body>
@@ -30,29 +34,7 @@
     <div class="card card-add" id="botonagregar" data-action="add">
       <div class="add-sign">+</div>
     </div>
-
-    <div class="card">
-      <img src="../publicar/placeholder.png" alt="Portada libro" class="card-img">
-      <div class="price">$12.000</div>
-      <button class="btn-eliminar" title="Eliminar">
-        
-      </button>
-    </div>
-
-    <div class="card">
-      <img src="../publicar/placeholder.png" alt="Portada libro" class="card-img">
-      <div class="price">$13.000</div>
-      <button class="btn-eliminar" title="Eliminar">
-        
-      </button>
-    </div>
-<div class="card">
-      <img src="../publicar/placeholder.png" alt="Portada libro" class="card-img">
-      <div class="price">$13.000</div>
-      <button class="btn-eliminar" title="Eliminar">
-
-
-
+    <!-- Las publicaciones se cargarán aquí dinámicamente -->
   </div>
 </main>
     

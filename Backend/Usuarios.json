@@ -93,5 +93,13 @@
     "password": "123",
     "genero": "hombre",
     "sede": "montañeses"
+  },
+  {
+    "nombre": "sebi",
+    "apellido": "sebi",
+    "mail": "sebi@hola",
+    "password": "1",
+    "genero": "hombre",
+    "sede": "montañeses"
   }
 ]

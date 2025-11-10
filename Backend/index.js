@@ -2,8 +2,33 @@ import fs from "fs";
 import "./pedidoLibro.js";
 import { subscribePOSTEvent, startServer, realTimeEvent } from "soquetic";
 
+const fs = require('fs');
 
-//  REGISTRAR USUARIO
+// LOGIN DE USUARIO
+subscribePOSTEvent("loginUsuario", (data) => {
+  let mail = data.mail;
+  let password = data.password;
+
+  // Leer el archivo de usuarios
+  let texto = fs.readFileSync("Usuarios.json", "utf-8");
+  let lista = JSON.parse(texto);
+
+  // Buscar usuario en la lista
+  for (let i = 0; i < lista.length; i++) {
+    if (lista[i].mail === mail && lista[i].password === password) {
+      console.log("Login exitoso: " + lista[i].nombre);
+      return { 
+        mensaje: "Bienvenido " + lista[i].nombre,
+        nombre: lista[i].nombre,
+        mail: lista[i].mail
+      };
+    }
+  }
+
+  // Si no se encontró
+  console.log("Usuario o contraseña incorrectos");
+  return { error: "Usuario o contraseña incorrectos" };
+});
 
 // REGISTRO DE USUARIO
 subscribePOSTEvent("registrarUsuario", (data) => {
@@ -36,30 +61,10 @@ subscribePOSTEvent("registrarUsuario", (data) => {
   console.log("Usuario registrado: " + nombre);
   return { mensaje: "Usuario registrado exitosamente" };
 });
-// LOGIN DE USUARIO
-subscribePOSTEvent("loginUsuario", (data) => {
-  let mail = data.mail;
-  let password = data.password;
-
-  // Leer el archivo de usuarios
-  let texto = fs.readFileSync("Usuarios.json", "utf-8");
-  let lista = JSON.parse(texto);
-
-  // Buscar usuario en la lista
-  for (let i = 0; i < lista.length; i++) {
-    if (lista[i].mail === mail && lista[i].password === password) {
-      console.log("Login exitoso: " + lista[i].nombre);
-      return { mensaje: "Bienvenido " + lista[i].nombre };
-    }
-  }
-
-  // Si no se encontró
-  console.log("Usuario o contraseña incorrectos");
-  return { error: "Usuario o contraseña incorrectos" };
-});
 
 subscribePOSTEvent("venderLibro", (data) => {
   // Recibe los datos desde el front
+  let portada = data.inputPortada
   let libro = data.libro;
   let materia = data.materia;
   let año = data.año;
