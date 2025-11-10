@@ -11,6 +11,7 @@ body {
 
 html, body {
   height: 100%;
+  max-width: 100%;
 }
 
 
@@ -126,14 +127,6 @@ select {
   gap: 16px;
 }
 
-.botonlogo {
-  background: none;
-  border: none;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
 
 
 
@@ -154,29 +147,38 @@ select {
 
 .logo {
   width: 100px;
-  height: 80px;
+  height: 100px;
   margin-left: px;
 }
 
 input {
   height: 30px;
   width: 40%;
-  margin-left: 100px;              
   margin-bottom: 10px;
   border-radius: 64px;
   margin-right: 100px;
+  margin-left: 200px;
+
+ 
 
 }
+.contenedornotisperfilhome {
+  display: flex;
+  align-items: center;
+  margin-right: 200px;
+  gap: 20px;
+}
+
+
+
 
 .botonlogo {
   height: 80px;
-margin-bottom: 30px;
   width: 100px;
-  margin-left: -450px;
   background-color: white;
   border-color: white;
   box-shadow: white;
-  margin-right: 150px;
+  margin-top: -10px;
 
 }
 
@@ -201,7 +203,7 @@ margin-right: -300px;
 height: 70px;
 width: 70px;
 margin-left: 250px;
-margin-right: -400px;
+margin-right: 200px;
 
 }
 
@@ -215,7 +217,7 @@ margin-top:-3px;
 .botonnotis{
 height: 70px;
 width: 70px;
-margin-right: -200px;
+margin-right: -300px;
 
 }
 

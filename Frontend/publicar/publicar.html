@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicar libro</title>
   <link rel="stylesheet" href="publicar.css">
-  <script src="publicar.js" defer></script>
+
+  <!-- Scripts de SoqueTIC (en este orden) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+  <script src="login.js" defer></script>
 </head>
 <body>
   
@@ -19,12 +23,15 @@
     
     <input type="text" id="buscador" placeholder="Buscar..."> 
 
+    <div class="contenedornotisperfilhome">
+      
+      <div class="botonesnotisperfilhome">
     <button class="botonnotis" id="botonnotificaciones" ><img class="imgnotis" src="../compraoventa/notis.png" alt=""></button>
 
     <button class="botonperf" id="botonperfil"><img class="imgperfil" src="../compraoventa/perfil.png" alt=""></button>
     
     <button class="botonhom" id="botonhome"><img class="imghome" src="../compraoventa/home.png" alt=""></button>
-    
+  </div>
     
     </div>
     
@@ -45,23 +52,33 @@
 
       <div class="formulario">
         <label>Nombre del libro</label>
-        <input class="inputformulario" type="text" placeholder="">
+        <input class="inputformulario" id="titulo" type="text" placeholder="">
 
         <label>Aula</label>
-        <input class="inputformulario" type="text" placeholder="">
+        <input class="inputformulario" id="aula" type="text" placeholder="">
 
-        <select>
+        <select id="año">
           <option selected>Seleccionar año</option>
+          <option>7mo°</option>
           <option>1°</option>
           <option>2°</option>
           <option>3°</option>
+          <option>4°</option>
+          <option>5°</option>
+
         </select>
 
-        <select>
+        <select id="materia">
           <option selected>Seleccionar materia</option>
           <option>Matemática</option>
           <option>Lengua</option>
           <option>Ciencias</option>
+          <option>Historia</option>
+          <option>Geografía</option>
+          <option>Inglés</option>
+          <option>Hebreo</option>
+          <option>Educación judía</option>
+          <option>Cultura Judía</option>
         </select>
 
         <button class="botonpublicar" id="botonpublicar">Publicar</button>

@@ -101,3 +101,137 @@ body {
     cursor: pointer;
   }
   
+
+  body {
+    background-color: rgb(226, 226, 226);
+  }
+  
+  h1 {
+      text-align: center;
+  }
+  
+  .encabezado {
+     background-color: rgb(255, 255, 255);
+      height: 100px;
+      width: 100%;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; 
+      gap: 40px;                  
+      padding: 0 40px;  ;     
+  }
+  
+
+
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  .lineagruesa {
+      width: 106%;
+      height: 4px;
+      background-color: black;
+      margin-bottom: 30px;
+  }
+  
+  
+  
+  
+  
+  
+  .botones {
+   height: 70px;
+  width: 15%;
+  margin-left: 200px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  margin-top: 30px;
+  }
+  
+  
+  .logo {
+    width: 100px;
+    height: 80px;
+    margin-left: px;
+}
+
+input {
+    height: 30px;
+    width: 40%;
+    margin-left: 200px;              
+    margin-bottom: 10px;
+    border-radius: 64px;
+    margin-right: 100px;
+
+}
+
+.botonlogo {
+    height: 80px;
+margin-bottom: 30px;
+    width: 100px;
+    margin-left: -450px;
+    background-color: white;
+    border-color: white;
+    box-shadow: white;
+    margin-right: 150px;
+
+}
+
+
+.imgperfil {
+height: 70px;
+width: 70px;
+margin-left: -8px;
+margin-top:-3px;
+}
+
+
+.botonperf {
+height: 70px;
+width: 70px;
+margin-left:150px;
+margin-right: -300px;
+}
+
+
+.botonhom {
+height: 70px;
+width: 70px;
+margin-left: 250px;
+margin-right: -400px;
+
+}
+
+.imghome {
+height: 70px;
+width: 70px;
+margin-left: -8px;
+margin-top:-3px;
+}
+
+.botonnotis{
+height: 70px;
+width: 70px;
+margin-right: -200px;
+
+}
+
+.imgnotis {
+height: 70px;
+width: 70px;
+margin-left: -8px;
+margin-top:-3px;
+}
+  
+  
+     

@@ -85,5 +85,13 @@
     "password": "1234",
     "genero": "hombre",
     "sede": "montañeses"
+  },
+  {
+    "nombre": "Anton",
+    "apellido": "Page",
+    "mail": "Antonio@gmail.com",
+    "password": "123",
+    "genero": "hombre",
+    "sede": "montañeses"
   }
 ]
