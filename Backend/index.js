@@ -2,69 +2,70 @@ import fs from "fs";
 import "./pedidoLibro.js";
 import { subscribePOSTEvent, startServer, realTimeEvent } from "soquetic";
 
-const fs = require('fs');
+//  REGISTRAR USUARIO
 
-// LOGIN DE USUARIO
+subscribePOSTEvent("registrarUsuario", (data) => {
+  // Recibe los datos desde el front
+  let nombre = data.nombre;
+  let mail = data.mail;
+  let sede = data.sede;
+  let password = data.contraseña;
+  let genero = data.genero;
+  // 1️ Leer lo que hay en el archivo
+  let texto = fs.readFileSync("Usuarios.json", "utf-8");
+
+  // 2️ Convertir ese texto a una lista de objetos
+  let lista = JSON.parse(texto);
+
+  // 3️ Crear un nuevo objeto usuario
+  let nuevoUsuario = {
+    nombre: nombre,
+    mail: mail,
+    sede: sede,
+    password: password,
+    genero: genero
+  };
+
+  // 4 Agregar el nuevo usuario a la lista
+  lista.push(nuevoUsuario);
+
+  // 5️ Volver a convertir a JSON
+  let jsonNuevo = JSON.stringify(lista, null, 2);
+
+  // 6️ Guardar el archivo actualizado
+  fs.writeFileSync("Usuarios.json", jsonNuevo);
+
+  console.log("Usuario registrado con éxito: " + nombre);
+  return { mensaje: "Usuario registrado con éxito" };
+});
+
+//  LOGIN DE USUARIO
+
 subscribePOSTEvent("loginUsuario", (data) => {
   let mail = data.mail;
   let password = data.password;
 
-  // Leer el archivo de usuarios
   let texto = fs.readFileSync("Usuarios.json", "utf-8");
   let lista = JSON.parse(texto);
 
-  // Buscar usuario en la lista
+  let encontrado = false;
+
   for (let i = 0; i < lista.length; i++) {
-    if (lista[i].mail === mail && lista[i].password === password) {
-      console.log("Login exitoso: " + lista[i].nombre);
-      return { 
-        mensaje: "Bienvenido " + lista[i].nombre,
-        nombre: lista[i].nombre,
-        mail: lista[i].mail
-      };
+    if (lista[i].mail == mail && lista[i].password == password) {
+      encontrado = true;
+      console.log("Bienvenido " + lista[i].nombre);
+      return { mensaje: "Bienvenido " + lista[i].nombre };
     }
   }
 
-  // Si no se encontró
-  console.log("Usuario o contraseña incorrectos");
-  return { error: "Usuario o contraseña incorrectos" };
-});
-
-// REGISTRO DE USUARIO
-subscribePOSTEvent("registrarUsuario", (data) => {
-  let { nombre, apellido, usuario, contraseña, genero, sede } = data;
-
-  // Leer usuarios existentes
-  let texto = fs.readFileSync("Usuarios.json", "utf-8");
-  let lista = JSON.parse(texto);
-
-  // Verificar si el usuario ya existe
-  let usuarioExistente = lista.find(u => u.mail === usuario);
-  if (usuarioExistente) {
-    return { error: "El usuario ya existe" };
+  if (encontrado == false) {
+    console.log("Usuario o contraseña incorrectos");
+    return { error: "Usuario o contraseña incorrectos" };
   }
-
-  // Crear nuevo usuario
-  let nuevoUsuario = {
-    nombre: nombre,
-    apellido: apellido,
-    mail: usuario,
-    password: contraseña,
-    genero: genero,
-    sede: sede
-  };
-
-  // Agregar a la lista y guardar
-  lista.push(nuevoUsuario);
-  fs.writeFileSync("Usuarios.json", JSON.stringify(lista, null, 2));
-
-  console.log("Usuario registrado: " + nombre);
-  return { mensaje: "Usuario registrado exitosamente" };
 });
 
 subscribePOSTEvent("venderLibro", (data) => {
   // Recibe los datos desde el front
-  let portada = data.inputPortada
   let libro = data.libro;
   let materia = data.materia;
   let año = data.año;
@@ -105,7 +106,7 @@ subscribePOSTEvent("venderLibro", (data) => {
   fs.writeFileSync("Libros.json", jsonLibro);
 
   console.log("Se ha publicado el libro: " + libro);
-  
+
   // 7️ Enviar notificación en tiempo real al vendedor
   realTimeEvent("libroPublicado", {
     mensaje: "¡Tu libro ha sido publicado exitosamente!",
@@ -115,7 +116,6 @@ subscribePOSTEvent("venderLibro", (data) => {
 
   return { mensaje: "Libro publicado con éxito" };
 });
-
 
 // 🗑️ BORRAR LIBRO
 subscribePOSTEvent("borrarLibro", (data) => {
@@ -150,7 +150,6 @@ subscribePOSTEvent("borrarLibro", (data) => {
   console.log("🗑️ Libro eliminado:", libroEliminado.libro);
   return { mensaje: "Libro eliminado con éxito", libroEliminado: libroEliminado };
 });
-
 
 //  ARRANCAR SERVIDOR SOQUETIC
 
