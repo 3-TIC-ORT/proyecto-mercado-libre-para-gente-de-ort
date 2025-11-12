@@ -7,6 +7,7 @@ import { subscribePOSTEvent, startServer, realTimeEvent } from "soquetic";
 subscribePOSTEvent("registrarUsuario", (data) => {
   // Recibe los datos desde el front
   let nombre = data.nombre;
+  let apellido = data.apellido;
   let mail = data.mail;
   let sede = data.sede;
   let password = data.contraseña;
@@ -20,6 +21,7 @@ subscribePOSTEvent("registrarUsuario", (data) => {
   // 3️ Crear un nuevo objeto usuario
   let nuevoUsuario = {
     nombre: nombre,
+    apellido: apellido,
     mail: mail,
     sede: sede,
     password: password,

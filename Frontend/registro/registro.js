@@ -13,13 +13,13 @@ botonEntrar.addEventListener("click", function(event) {
 
   const nombre = document.getElementById("nombre").value;
   const apellido = document.getElementById("apellido").value;
-  const usuario = document.getElementById("usuario").value;
+  const mail = document.getElementById("mail").value;
   const contraseña = document.getElementById("contraseña").value;
   const repcontraseña = document.getElementById("repcontraseña").value;
   const genero = document.querySelector('input[name="genero"]:checked')?.value;
   const sede = document.querySelector('input[name="sede"]:checked')?.value;
 
-  if (!nombre || !apellido || !usuario || !contraseña || !repcontraseña || !genero || !sede) {
+  if (!nombre || !apellido || !mail || !contraseña || !repcontraseña || !genero || !sede) {
     alert("Por favor, complete todos los campos");
     return;
   }
@@ -30,7 +30,7 @@ botonEntrar.addEventListener("click", function(event) {
   }
 
   // Validar que el usuario contenga @
-  if (!usuario.includes("@")) {
+  if (!mail.includes("@")) {
     alert("El email debe contener un @");
     return;
   }
@@ -40,7 +40,7 @@ botonEntrar.addEventListener("click", function(event) {
     return;
   }
 
-  const userData = { nombre, apellido, usuario, contraseña, genero, sede };
+  const userData = { nombre, apellido, mail, contraseña, genero, sede };
 
   postEvent("registrarUsuario", userData, function(response) {
     console.log("Respuesta del servidor:", response);

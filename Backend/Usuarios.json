@@ -101,5 +101,37 @@
     "password": "1",
     "genero": "hombre",
     "sede": "montañeses"
+  },
+  {
+    "nombre": "luna",
+    "sede": "montañeses",
+    "password": "123",
+    "genero": "mujer"
+  },
+  {
+    "nombre": "tomas",
+    "sede": "montañeses",
+    "password": "123",
+    "genero": "hombre"
+  },
+  {
+    "nombre": "tomas",
+    "sede": "montañeses",
+    "password": "123",
+    "genero": "hombre"
+  },
+  {
+    "nombre": "rodolfo",
+    "mail": "rodocap@gmail.com",
+    "sede": "montañeses",
+    "password": "123",
+    "genero": "hombre"
+  },
+  {
+    "nombre": "rodolfo",
+    "mail": "rodocapelli@gmail",
+    "sede": "almagro",
+    "password": "123",
+    "genero": "hombre"
   }
 ]
