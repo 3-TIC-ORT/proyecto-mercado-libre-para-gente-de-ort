@@ -11,6 +11,7 @@ subscribePOSTEvent("registrarUsuario", (data) => {
   let mail = data.mail;
   let sede = data.sede;
   let password = data.contraseña;
+  let fotodeperfil = data.fotodeperfil
   let genero = data.genero;
   // 1️ Leer lo que hay en el archivo
   let texto = fs.readFileSync("Usuarios.json", "utf-8");
@@ -25,6 +26,7 @@ subscribePOSTEvent("registrarUsuario", (data) => {
     mail: mail,
     sede: sede,
     password: password,
+    fotodeperfil: fotodeperfil,
     genero: genero
   };
 
@@ -81,6 +83,7 @@ subscribePOSTEvent("venderLibro", (data) => {
   let libro = data.libro;
   let materia = data.materia;
   let año = data.año;
+  let aula = data.aula;
   let sede = data.sede;
   let precio = data.precio;
   let foto = data.foto;
