@@ -1,7 +1,9 @@
 
 body{
     background-color: #1f4d78;
-    ;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 .encabezado {
     background-color: rgb(255, 255, 255);
@@ -24,12 +26,9 @@ body{
     font-size: 24px;
     font-weight: 550;
     margin-left: -1100px;
-    margin-top: -100px              
-
+    margin-top: -100px;
+    cursor: pointer;
 }
-
-
-
 
 .lineagruesa {
     width: 100%;
@@ -37,15 +36,143 @@ body{
     background-color: black;
 }
 
+.contenedor {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+}
 
-.botoncompra {
-   height: 250px;
-   width: 30%;
-   margin-left: 130px;
-font-size: 30px;
-background-color: rgb(37, 66, 151);
-color: white;
-font-weight: 600;
+.contenedor h2 {
+    color: white;
+}
 
-        
+.notificaciones-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.notificacion-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.notificacion-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.notif-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.notif-icono {
+    font-size: 24px;
+}
+
+.notif-titulo {
+    font-size: 18px;
+    font-weight: bold;
+    flex-grow: 1;
+    color: #333;
+}
+
+.notif-estado {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.estado-pendiente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.estado-aceptado {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.estado-rechazado {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.notif-body {
+    margin-bottom: 15px;
+}
+
+.notif-body p {
+    margin: 8px 0;
+    color: #555;
+}
+
+.notif-libro {
+    font-size: 16px;
+    font-weight: bold;
+    color: #026499;
+    margin: 10px 0 !important;
+}
+
+.notif-fecha {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+}
+
+.notif-acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-aceptar,
+.btn-rechazar {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-aceptar {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-aceptar:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.btn-rechazar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-rechazar:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.notificacion-card.pendiente {
+    border-left: 5px solid #ffc107;
+}
+
+.notificacion-card.aceptado {
+    border-left: 5px solid #28a745;
+}
+
+.notificacion-card.rechazado {
+    border-left: 5px solid #dc3545;
 }

@@ -192,6 +192,169 @@ subscribePOSTEvent("obtenerTodosLosLibros", (data) => {
   return { libros: listaLibros };
 });
 
+// 📬 CREAR PEDIDO DE LIBRO (Notificación al vendedor)
+subscribePOSTEvent("pedirLibro", (data) => {
+  let idLibro = data.idLibro;
+  let mailComprador = data.mailComprador;
+  let nombreComprador = data.nombreComprador;
+
+  // 1️ Leer el libro para obtener info del vendedor
+  let textoLibros = fs.readFileSync("Libros.json", "utf-8");
+  let listaLibros = JSON.parse(textoLibros);
+  
+  let libro = listaLibros.find(l => l.id === idLibro);
+  
+  if (!libro) {
+    return { error: "Libro no encontrado" };
+  }
+
+  // 2️ Leer notificaciones actuales
+  let textoNotificaciones = fs.readFileSync("Notificaciones.json", "utf-8");
+  let listaNotificaciones = JSON.parse(textoNotificaciones);
+
+  // 3️ Crear notificación para el vendedor
+  let nuevaNotificacion = {
+    id: Date.now(),
+    tipo: "pedido",
+    idLibro: idLibro,
+    libroNombre: libro.libro,
+    mailVendedor: libro.mailVendedor,
+    nombreVendedor: libro.nombreVendedor,
+    mailComprador: mailComprador,
+    nombreComprador: nombreComprador,
+    estado: "pendiente", // pendiente, aceptado, rechazado
+    fecha: new Date().toISOString()
+  };
+
+  // 4️ Agregar notificación
+  listaNotificaciones.push(nuevaNotificacion);
+
+  // 5️ Guardar
+  let jsonNotificaciones = JSON.stringify(listaNotificaciones, null, 2);
+  fs.writeFileSync("Notificaciones.json", jsonNotificaciones);
+
+  console.log(`📬 ${nombreComprador} pidió el libro "${libro.libro}" a ${libro.nombreVendedor}`);
+  return { mensaje: "Pedido enviado exitosamente" };
+});
+
+// ✅ ACEPTAR PEDIDO
+subscribePOSTEvent("aceptarPedido", (data) => {
+  let idNotificacion = data.idNotificacion;
+
+  // 1️ Leer notificaciones
+  let textoNotificaciones = fs.readFileSync("Notificaciones.json", "utf-8");
+  let listaNotificaciones = JSON.parse(textoNotificaciones);
+
+  // 2️ Buscar la notificación
+  let notificacion = listaNotificaciones.find(n => n.id === idNotificacion);
+  
+  if (!notificacion) {
+    return { error: "Notificación no encontrada" };
+  }
+
+  // 3️ Marcar como aceptado
+  notificacion.estado = "aceptado";
+
+  // 4️ Crear notificación para el comprador
+  let notificacionComprador = {
+    id: Date.now(),
+    tipo: "respuesta",
+    idLibro: notificacion.idLibro,
+    libroNombre: notificacion.libroNombre,
+    mailVendedor: notificacion.mailVendedor,
+    nombreVendedor: notificacion.nombreVendedor,
+    mailComprador: notificacion.mailComprador,
+    nombreComprador: notificacion.nombreComprador,
+    estado: "aceptado",
+    mensaje: `Tu pedido del libro "${notificacion.libroNombre}" fue aceptado por ${notificacion.nombreVendedor}`,
+    fecha: new Date().toISOString()
+  };
+
+  listaNotificaciones.push(notificacionComprador);
+
+  // 5️ Guardar notificaciones
+  let jsonNotificaciones = JSON.stringify(listaNotificaciones, null, 2);
+  fs.writeFileSync("Notificaciones.json", jsonNotificaciones);
+
+  // 6️ Eliminar el libro del catálogo
+  let textoLibros = fs.readFileSync("Libros.json", "utf-8");
+  let listaLibros = JSON.parse(textoLibros);
+  
+  let libroIndex = listaLibros.findIndex(l => l.id === notificacion.idLibro);
+  
+  if (libroIndex !== -1) {
+    listaLibros.splice(libroIndex, 1);
+    let jsonLibros = JSON.stringify(listaLibros, null, 2);
+    fs.writeFileSync("Libros.json", jsonLibros);
+  }
+
+  console.log(`✅ Pedido aceptado: ${notificacion.libroNombre}`);
+  return { mensaje: "Pedido aceptado exitosamente", notificacion: notificacion };
+});
+
+// ❌ RECHAZAR PEDIDO
+subscribePOSTEvent("rechazarPedido", (data) => {
+  let idNotificacion = data.idNotificacion;
+
+  // 1️ Leer notificaciones
+  let textoNotificaciones = fs.readFileSync("Notificaciones.json", "utf-8");
+  let listaNotificaciones = JSON.parse(textoNotificaciones);
+
+  // 2️ Buscar la notificación
+  let notificacion = listaNotificaciones.find(n => n.id === idNotificacion);
+  
+  if (!notificacion) {
+    return { error: "Notificación no encontrada" };
+  }
+
+  // 3️ Marcar como rechazado
+  notificacion.estado = "rechazado";
+
+  // 4️ Crear notificación para el comprador
+  let notificacionComprador = {
+    id: Date.now() + 1, // Evitar duplicados si se crean simultáneamente
+    tipo: "respuesta",
+    idLibro: notificacion.idLibro,
+    libroNombre: notificacion.libroNombre,
+    mailVendedor: notificacion.mailVendedor,
+    nombreVendedor: notificacion.nombreVendedor,
+    mailComprador: notificacion.mailComprador,
+    nombreComprador: notificacion.nombreComprador,
+    estado: "rechazado",
+    mensaje: `Tu pedido del libro "${notificacion.libroNombre}" fue rechazado por ${notificacion.nombreVendedor}`,
+    fecha: new Date().toISOString()
+  };
+
+  listaNotificaciones.push(notificacionComprador);
+
+  // 5️ Guardar notificaciones
+  let jsonNotificaciones = JSON.stringify(listaNotificaciones, null, 2);
+  fs.writeFileSync("Notificaciones.json", jsonNotificaciones);
+
+  console.log(`❌ Pedido rechazado: ${notificacion.libroNombre}`);
+  return { mensaje: "Pedido rechazado", notificacion: notificacion };
+});
+
+// 📋 OBTENER NOTIFICACIONES DE UN USUARIO
+subscribePOSTEvent("obtenerNotificaciones", (data) => {
+  let mailUsuario = data.mailUsuario;
+
+  // 1️ Leer notificaciones
+  let textoNotificaciones = fs.readFileSync("Notificaciones.json", "utf-8");
+  let listaNotificaciones = JSON.parse(textoNotificaciones);
+
+  // 2️ Filtrar notificaciones del usuario (como vendedor o comprador)
+  let misNotificaciones = listaNotificaciones.filter(n => 
+    n.mailVendedor === mailUsuario || n.mailComprador === mailUsuario
+  );
+
+  // 3️ Ordenar por fecha (más recientes primero)
+  misNotificaciones.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+  console.log(`📋 Usuario ${mailUsuario} tiene ${misNotificaciones.length} notificaciones`);
+  return { notificaciones: misNotificaciones };
+});
+
 //  ARRANCAR SERVIDOR SOQUETIC
 
 startServer(3000, true);

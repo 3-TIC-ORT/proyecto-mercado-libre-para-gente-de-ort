@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1763404200910,
+    "tipo": "pedido",
+    "idLibro": 1763390865463,
+    "libroNombre": "queso",
+    "mailVendedor": "a",
+    "nombreVendedor": "a",
+    "mailComprador": "sebi@",
+    "nombreComprador": "hola",
+    "estado": "aceptado",
+    "fecha": "2025-11-17T18:30:00.910Z"
+  },
+  {
+    "id": 1763404234379,
+    "tipo": "respuesta",
+    "idLibro": 1763390865463,
+    "libroNombre": "queso",
+    "mailVendedor": "a",
+    "nombreVendedor": "a",
+    "mailComprador": "sebi@",
+    "nombreComprador": "hola",
+    "estado": "aceptado",
+    "mensaje": "Tu pedido del libro \"queso\" fue aceptado por a",
+    "fecha": "2025-11-17T18:30:34.380Z"
+  }
+]

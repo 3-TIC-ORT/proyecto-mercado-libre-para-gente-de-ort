@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo</title>
   <link rel="stylesheet" href="catalogo.css">
+  
+  <!-- Scripts de SoqueTIC (en este orden) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
   <script src="catalogo.js" defer></script>
 </head>
 <body>
   <div class="encabezado">
-
-
     <img src="../compraoventa/logo nuevo.png" class="logo"> 
    
    <input type="text" id="buscador" placeholder="Buscar..."> 
@@ -29,9 +31,6 @@
    
    <div class="lineagruesa"></div>
 
-
-
-
 </header>
 
   <div class="filters">
@@ -43,40 +42,11 @@
     </select>
   </div>
 
-  <h2 class="title">MÁS BUSCADOS</h2>
+  <h2 class="title">LIBROS DISPONIBLES</h2>
 
-  <div class="product-grid">
-    <div class="product-card">
-      <img src="descarga.jfif" alt="Libro">
-      <h3>Ready for First</h3>
-      <p>Macmillan Education</p>
-      <span class="price">$XXXX</span>
-      <button class="botonpedir">Pedir</button>
-    </div>
-
-    <div class="product-card">
-      <img src="descarga (3).jfif" alt="Libro">
-      <h3>Gold experience B1+</h3>
-      <p>Pearson</p>
-      <span class="price">$XXXX</span>
-      <button class="botonpedir">Pedir</button>
-    </div>
-
-    <div class="product-card">
-      <img src="descarga (2).jfif" alt="Libro">
-      <h3>Macbeth</h3>
-      <p>Colihue</p>
-      <span class="price">$XXXX</span>
-      <button class="botonpedir">Pedir</button>
-    </div>
-
-    <div class="product-card">
-      <img src="descarga (4).jfif" alt="Libro">
-      <h3>Toldot Israel 3</h3>
-      <p>ORT</p>
-      <span class="price">$XXXX</span>
-      <button class="botonpedir">Pedir</button>
-    </div>
+  <!-- Los libros se cargarán dinámicamente aquí -->
+  <div class="product-grid" id="productGrid">
+    <!-- Las tarjetas de productos se generarán dinámicamente con JavaScript -->
   </div>
 </body>
 </html>

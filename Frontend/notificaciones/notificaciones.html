@@ -3,47 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>notificaciones</title>
+    <title>Notificaciones</title>
+    
+    <!-- Scripts de SoqueTIC (en este orden) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
     <script src="notificaciones.js" defer></script>
     <link rel="stylesheet" href="notificaciones.css">
 </head>
 <body>
     <header>
-
         <div class="encabezado">
-    
-    
-            <button id="botonvolver"  class="botonlogo" > MERCADO LIBRO </button>
-            
-            
-            
-            </div>
-            
-            
-            </div>
-
-            <h1></h1>
-            
-            <div class="lineagruesa"></div>
-    
-    
+            <button id="botonvolver" class="botonlogo">MERCADO LIBRO</button>
+        </div>
+        
+        <h1></h1>
+        
+        <div class="lineagruesa"></div>
     </header>
 
-
-<div class="contenedor">
-
-<div class="noti">
-
-</div>
-
-
-
-
-
-
-
-
-</div>
-
+    <div class="contenedor">
+        <h2 style="text-align: center; margin: 20px 0;">Mis Notificaciones</h2>
+        
+        <!-- Contenedor de notificaciones que se llenará dinámicamente -->
+        <div class="notificaciones-lista" id="notificacionesLista">
+            <!-- Las notificaciones se cargarán aquí dinámicamente -->
+        </div>
+    </div>
 </body>
 </html>
