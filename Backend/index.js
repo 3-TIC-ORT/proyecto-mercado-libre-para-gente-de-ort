@@ -98,6 +98,7 @@ subscribePOSTEvent("venderLibro", (data) => {
   let nuevoLibro = {
   id: Date.now(), // ID único basado en timestamp
   libro: libro,
+  aula: aula,
   materia: materia,
   año: año,
   sede: sede,
