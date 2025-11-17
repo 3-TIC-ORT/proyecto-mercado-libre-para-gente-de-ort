@@ -1,3 +1,13 @@
+// Verificar si hay sesión iniciada
+const usuarioActual = localStorage.getItem("usuarioActual");
+console.log("Usuario en sesión:", usuarioActual);
+
+if (!usuarioActual) {
+    console.log("No hay sesión activa, redirigiendo al login");
+    alert("Debes iniciar sesión primero");
+    window.location.href = "../login/login.html";
+}
+
 const botonComprar = document.getElementById("botoncomprar");
 const botonVender = document.getElementById("botonvender");
 const botonVolver = document.getElementById("botonvolver");

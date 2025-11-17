@@ -56,7 +56,17 @@ subscribePOSTEvent("loginUsuario", (data) => {
     if (lista[i].mail == mail && lista[i].password == password) {
       encontrado = true;
       console.log("Bienvenido " + lista[i].nombre);
-      return { mensaje: "Bienvenido " + lista[i].nombre };
+      // Devolver los datos del usuario (sin la contraseña por seguridad)
+      return { 
+        mensaje: "Bienvenido " + lista[i].nombre,
+        usuario: {
+          nombre: lista[i].nombre,
+          apellido: lista[i].apellido,
+          mail: lista[i].mail,
+          sede: lista[i].sede,
+          genero: lista[i].genero
+        }
+      };
     }
   }
 
@@ -151,6 +161,31 @@ subscribePOSTEvent("borrarLibro", (data) => {
 
   console.log("🗑️ Libro eliminado:", libroEliminado.libro);
   return { mensaje: "Libro eliminado con éxito", libroEliminado: libroEliminado };
+});
+
+// 📚 OBTENER PUBLICACIONES DE UN USUARIO
+subscribePOSTEvent("obtenerMisPublicaciones", (data) => {
+  let mailUsuario = data.mailUsuario;
+
+  // 1️ Leer los libros actuales
+  let textoLibros = fs.readFileSync("Libros.json", "utf-8");
+  let listaLibros = JSON.parse(textoLibros);
+
+  // 2️ Filtrar solo los libros del usuario
+  let misLibros = listaLibros.filter(libro => libro.mailVendedor === mailUsuario);
+
+  console.log(`📚 Usuario ${mailUsuario} tiene ${misLibros.length} publicaciones`);
+  return { libros: misLibros };
+});
+
+// 📚 OBTENER TODOS LOS LIBROS
+subscribePOSTEvent("obtenerTodosLosLibros", (data) => {
+  // 1️ Leer los libros actuales
+  let textoLibros = fs.readFileSync("Libros.json", "utf-8");
+  let listaLibros = JSON.parse(textoLibros);
+
+  console.log(`📚 Enviando ${listaLibros.length} libros`);
+  return { libros: listaLibros };
 });
 
 //  ARRANCAR SERVIDOR SOQUETIC

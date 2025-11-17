@@ -48,52 +48,50 @@ botonPublicar.addEventListener("click", async function(event) {
         return;
     }
 
-    
-        
+    try {
+        // Obtener usuario actual del localStorage
+        const usuarioActual = localStorage.getItem("usuarioActual");
+        if (!usuarioActual) {
+            alert("Debes iniciar sesión para publicar un libro");
+            window.location.href = "../login/login.html";
+            return;
+        }
 
-        const usuario = JSON.parse(usuarioActual.value);
+        const usuario = JSON.parse(usuarioActual);
 
         // Convertir imagen a base64 si existe
-        let imagenBase64 = inputPortada;
+        let imagenBase64 = "sin-foto.jpg";
         if (portada) {
             imagenBase64 = await convertirImagenABase64(portada);
         }
 
-        // Crear objeto del libro
-        const venderLibro = {
+        // Crear objeto del libro para enviar al backend
+        const datosLibro = {
             libro: titulo,
-            aula: aula,
-            año: año,
             materia: materia,
-            foto: imagenBase64 || "sin-foto.jpg",
-            precio: precio, // Puedes agregar un campo de precio si quieres
+            año: año,
+            sede: usuario.sede || aula,
+            precio: "0", // Puedes agregar un campo de precio si lo necesitas
+            foto: imagenBase64,
             descripcion: "",
-            nombreVendedor: usuario.nombre,
-            mailVendedor: usuario.mail,
+            nombreVendedor: usuario.nombre || "Usuario",
+            mailVendedor: usuario.mail
         };
 
-        // Obtener publicaciones existentes
-        let publicaciones = [];
-        try {
-            const result = await window.storage.get('publicaciones', true);
-            if (result) {
-                publicaciones = JSON.parse(result.value);
+        // Enviar al backend usando SoqueTIC
+        postEvent("venderLibro", datosLibro, function(respuesta) {
+            if (respuesta.error) {
+                alert("Error al publicar: " + respuesta.error);
+            } else {
+                alert("¡Publicación creada exitosamente!");
+                window.location.href = "../mispublicaciones/mispublicaciones.html";
             }
-        } catch (error) {
-            console.log("No hay publicaciones previas, creando lista nueva");
-            publicaciones = [];
-        }
-
-        // Agregar nueva publicación
-        publicaciones.push(nuevoLibro);
-
-        // Guardar en storage compartido
-        await window.storage.set('publicaciones', JSON.stringify(publicaciones), true);
-
-        alert("¡Publicación creada exitosamente!");
-        window.location.href = "../mispublicaciones/mispublicaciones.html";
-
-    } )
+        });
+    } catch (error) {
+        console.error("Error al publicar:", error);
+        alert("Hubo un error al publicar el libro. Por favor, intenta de nuevo.");
+    }
+});
 // Función auxiliar para convertir imagen a base64
 function convertirImagenABase64(file) {
     return new Promise((resolve, reject) => {

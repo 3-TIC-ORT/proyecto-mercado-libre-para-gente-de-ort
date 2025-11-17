@@ -93,10 +93,38 @@ html, body {
   position: relative;
   height: 620px; 
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  flex-direction: column;
   background-color: #fff; 
   box-shadow: 0 4px 6px rgba(0,0,0,0.12);
+}
+
+.card-imagen {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-info {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.card-titulo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.card-detalle {
+  font-size: 14px;
+  color: #333;
+  margin: 2px 0;
 }
 
 .card-img {
@@ -122,23 +150,26 @@ html, body {
 }
 
 .btn-eliminar {
-  position: absolute;
-  right: 10px;
-  bottom: 8px;
   background: #ff2b2b;
   border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: auto;
+  transition: background 0.2s;
 }
 
-.btn-eliminar svg { filter: drop-shadow(0 0 0 rgba(0,0,0,0)); stroke: #fff; }
+.btn-eliminar:hover {
+  background: #cc0000;
+}
+
+.btn-eliminar svg { 
+  filter: drop-shadow(0 0 0 rgba(0,0,0,0)); 
+  stroke: #fff; 
+}
 
 .card-add {
   display: flex;

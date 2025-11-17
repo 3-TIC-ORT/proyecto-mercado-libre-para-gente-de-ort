@@ -30,13 +30,21 @@ botonEntrar.addEventListener("click", function(event) {
     // Enviar al backend
     postEvent("loginUsuario", userData, function(response) {
         console.log("Respuesta del servidor:", response);
+        console.log("Mensaje:", response.mensaje);
+        console.log("Usuario:", response.usuario);
         
         // El backend devuelve 'mensaje' si está ok o 'error' si falla
-        if (response.mensaje) {
+        if (response.mensaje && response.usuario) {
+            // Guardar los datos del usuario en localStorage
+            localStorage.setItem("usuarioActual", JSON.stringify(response.usuario));
+            console.log("Usuario guardado en localStorage:", localStorage.getItem("usuarioActual"));
             alert(response.mensaje);
             window.location.href = "../compraoventa/compraoventa.html";
         } else if (response.error) {
             alert("Error en el login: " + response.error);
+        } else {
+            console.log("Respuesta inesperada del servidor");
+            alert("Respuesta inesperada del servidor");
         }
     });
 });
