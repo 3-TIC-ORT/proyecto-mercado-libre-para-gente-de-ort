@@ -167,7 +167,7 @@ subscribePOSTEvent("borrarLibro", (data) => {
   return { mensaje: "Libro eliminado con éxito", libroEliminado: libroEliminado };
 });
 
-// 📚 OBTENER PUBLICACIONES DE UN USUARIO
+// OBTENER PUBLICACIONES DE UN USUARIO
 subscribePOSTEvent("obtenerMisPublicaciones", (data) => {
   let mailUsuario = data.mailUsuario;
 
@@ -178,21 +178,21 @@ subscribePOSTEvent("obtenerMisPublicaciones", (data) => {
   // 2️ Filtrar solo los libros del usuario
   let misLibros = listaLibros.filter(libro => libro.mailVendedor === mailUsuario);
 
-  console.log(`📚 Usuario ${mailUsuario} tiene ${misLibros.length} publicaciones`);
+  console.log(`Usuario ${mailUsuario} tiene ${misLibros.length} publicaciones`);
   return { libros: misLibros };
 });
 
-// 📚 OBTENER TODOS LOS LIBROS
+// OBTENER TODOS LOS LIBROS
 subscribePOSTEvent("obtenerTodosLosLibros", (data) => {
   // 1️ Leer los libros actuales
   let textoLibros = fs.readFileSync("Libros.json", "utf-8");
   let listaLibros = JSON.parse(textoLibros);
 
-  console.log(`📚 Enviando ${listaLibros.length} libros`);
+  console.log(`Enviando ${listaLibros.length} libros`);
   return { libros: listaLibros };
 });
 
-// 📬 CREAR PEDIDO DE LIBRO (Notificación al vendedor)
+// CREAR PEDIDO DE LIBRO (Notificación al vendedor)
 subscribePOSTEvent("pedirLibro", (data) => {
   let idLibro = data.idLibro;
   let mailComprador = data.mailComprador;
@@ -233,11 +233,11 @@ subscribePOSTEvent("pedirLibro", (data) => {
   let jsonNotificaciones = JSON.stringify(listaNotificaciones, null, 2);
   fs.writeFileSync("Notificaciones.json", jsonNotificaciones);
 
-  console.log(`📬 ${nombreComprador} pidió el libro "${libro.libro}" a ${libro.nombreVendedor}`);
+  console.log(`${nombreComprador} pidió el libro "${libro.libro}" a ${libro.nombreVendedor}`);
   return { mensaje: "Pedido enviado exitosamente" };
 });
 
-// ✅ ACEPTAR PEDIDO
+// ACEPTAR PEDIDO
 subscribePOSTEvent("aceptarPedido", (data) => {
   let idNotificacion = data.idNotificacion;
 
@@ -288,11 +288,11 @@ subscribePOSTEvent("aceptarPedido", (data) => {
     fs.writeFileSync("Libros.json", jsonLibros);
   }
 
-  console.log(`✅ Pedido aceptado: ${notificacion.libroNombre}`);
+  console.log(`Pedido aceptado: ${notificacion.libroNombre}`);
   return { mensaje: "Pedido aceptado exitosamente", notificacion: notificacion };
 });
 
-// ❌ RECHAZAR PEDIDO
+// RECHAZAR PEDIDO
 subscribePOSTEvent("rechazarPedido", (data) => {
   let idNotificacion = data.idNotificacion;
 
@@ -331,11 +331,11 @@ subscribePOSTEvent("rechazarPedido", (data) => {
   let jsonNotificaciones = JSON.stringify(listaNotificaciones, null, 2);
   fs.writeFileSync("Notificaciones.json", jsonNotificaciones);
 
-  console.log(`❌ Pedido rechazado: ${notificacion.libroNombre}`);
+  console.log(`Pedido rechazado: ${notificacion.libroNombre}`);
   return { mensaje: "Pedido rechazado", notificacion: notificacion };
 });
 
-// 📋 OBTENER NOTIFICACIONES DE UN USUARIO
+// OBTENER NOTIFICACIONES DE UN USUARIO
 subscribePOSTEvent("obtenerNotificaciones", (data) => {
   let mailUsuario = data.mailUsuario;
 
@@ -351,11 +351,11 @@ subscribePOSTEvent("obtenerNotificaciones", (data) => {
   // 3️ Ordenar por fecha (más recientes primero)
   misNotificaciones.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
-  console.log(`📋 Usuario ${mailUsuario} tiene ${misNotificaciones.length} notificaciones`);
+  console.log(`Usuario ${mailUsuario} tiene ${misNotificaciones.length} notificaciones`);
   return { notificaciones: misNotificaciones };
 });
 
 //  ARRANCAR SERVIDOR SOQUETIC
 
 startServer(3000, true);
-console.log("🚀 Servidor SoqueTIC corriendo en puerto 3000");
+console.log("Servidor SoqueTIC corriendo en puerto 3000");
