@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del libro</title>
+  <link rel="stylesheet" href="infoLibro.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+  <script src="infoLibro.js" defer></script>
+</head>
+<body>
+  <!-- Header con logo y botones de navegación -->
+  <header>
+    <div class="encabezado">
+      <button class="botonlogo" id="botonlogo">
+        <img src="../compraoventa/logo nuevo.png" class="logo" alt="Logo">
+      </button>
+
+      <button class="botonnotis" id="botonnotificaciones">
+        <img class="imgnotis" src="../compraoventa/notis.png" alt="Notificaciones">
+      </button>
+
+      <button class="botonperf" id="botonperfil">
+        <img class="imgperfil" src="../compraoventa/perfil.png" alt="Perfil">
+      </button>
+
+      <button class="botonhom" id="botonhome">
+        <img class="imghome" src="../compraoventa/home.png" alt="Home">
+      </button>
+    </div>
+    <div class="lineagruesa"></div>
+  </header>
+
+  <!-- Contenedor principal con diseño de la imagen -->
+  <div class="contenedor-principal">
+    <div id="detalle" class="detalle-libro">
+      <!-- Se completará con JS -->
+    </div>
+  </div>
+</body>
+</html>

@@ -23,5 +23,55 @@
     "estado": "aceptado",
     "mensaje": "Tu pedido del libro \"queso\" fue aceptado por a",
     "fecha": "2025-11-17T18:30:34.380Z"
+  },
+  {
+    "id": 1763555748245,
+    "tipo": "pedido",
+    "idLibro": 1763555714154,
+    "libroNombre": "hola",
+    "mailVendedor": "sebi@",
+    "nombreVendedor": "hola",
+    "mailComprador": "a",
+    "nombreComprador": "a",
+    "estado": "aceptado",
+    "fecha": "2025-11-19T12:35:48.245Z"
+  },
+  {
+    "id": 1763555796629,
+    "tipo": "respuesta",
+    "idLibro": 1763555714154,
+    "libroNombre": "hola",
+    "mailVendedor": "sebi@",
+    "nombreVendedor": "hola",
+    "mailComprador": "a",
+    "nombreComprador": "a",
+    "estado": "aceptado",
+    "mensaje": "Tu pedido del libro \"hola\" fue aceptado por hola",
+    "fecha": "2025-11-19T12:36:36.629Z"
+  },
+  {
+    "id": 1763557616038,
+    "tipo": "pedido",
+    "idLibro": 1763557590828,
+    "libroNombre": "gaga",
+    "mailVendedor": "sebi@",
+    "nombreVendedor": "hola",
+    "mailComprador": "a",
+    "nombreComprador": "a",
+    "estado": "aceptado",
+    "fecha": "2025-11-19T13:06:56.038Z"
+  },
+  {
+    "id": 1763557646560,
+    "tipo": "respuesta",
+    "idLibro": 1763557590828,
+    "libroNombre": "gaga",
+    "mailVendedor": "sebi@",
+    "nombreVendedor": "hola",
+    "mailComprador": "a",
+    "nombreComprador": "a",
+    "estado": "aceptado",
+    "mensaje": "Tu pedido del libro \"gaga\" fue aceptado por hola",
+    "fecha": "2025-11-19T13:07:26.560Z"
   }
 ]

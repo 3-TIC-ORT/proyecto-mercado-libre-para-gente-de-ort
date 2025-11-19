@@ -10,5 +10,29 @@
     "descripcion": "",
     "nombreVendedor": "a",
     "mailVendedor": "a"
+  },
+  {
+    "id": 1763555663525,
+    "libro": "El guardian entre el centeno",
+    "materia": "Lengua",
+    "año": "3°",
+    "sede": "montañeses",
+    "precio": "0",
+    "foto": "sin-foto.jpg",
+    "descripcion": "",
+    "nombreVendedor": "a",
+    "mailVendedor": "a"
+  },
+  {
+    "id": 1763559233450,
+    "libro": "Libro de Prueba",
+    "materia": "Geografía",
+    "año": "5°",
+    "sede": "montañeses",
+    "precio": "0",
+    "foto": "sin-foto.jpg",
+    "descripcion": "",
+    "nombreVendedor": "a",
+    "mailVendedor": "a"
   }
 ]

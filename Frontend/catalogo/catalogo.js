@@ -82,7 +82,7 @@ function mostrarLibros(libros) {
         return;
     }
 
-    // Crear una tarjeta para cada libro
+    // Crear una tarjeta para cada libro (ahora la tarjeta es clicable y redirige a la página de detalle)
     libros.forEach(libro => {
         const card = document.createElement("div");
         card.className = "product-card";
@@ -92,14 +92,20 @@ function mostrarLibros(libros) {
             ? libro.foto 
             : "../img/libro-placeholder.png";
 
+        // Construir contenido sin el botón de pedir aquí (el botón estará en la página de detalle)
         card.innerHTML = `
             <img src="${imagenSrc}" alt="${libro.libro}" onerror="this.src='../img/libro-placeholder.png'">
             <h3>${libro.libro}</h3>
             <p>${libro.materia} - ${libro.año}</p>
             <p><strong>Vendedor:</strong> ${libro.nombreVendedor}</p>
             <span class="price">$${libro.precio}</span>
-            <button class="botonpedir" onclick="pedirLibro(${libro.id})">Pedir</button>
         `;
+
+        // Hacer la tarjeta clicable: ir a infoLibro.html con query param id
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            window.location.href = `infoLibro.html?id=${libro.id}`;
+        });
 
         productGrid.appendChild(card);
     });
