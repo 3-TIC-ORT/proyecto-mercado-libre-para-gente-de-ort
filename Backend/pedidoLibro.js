@@ -13,14 +13,14 @@ subscribePOSTEvent("pedirLibro", (data) => {
   let libroEncontrado = listaLibros.find(l => l.libro === tituloLibro);
 
   if (!libroEncontrado) {
-    console.log("❌ No se encontró el libro:", tituloLibro);
-    return { error: "❌ No se encontró el libro solicitado" };
+    console.log("No se encontró el libro:", tituloLibro);
+    return { error: "No se encontró el libro solicitado" };
   }
 
   // Mostrar resultado en consola
-  console.log("📗 Pedido de libro:", libroEncontrado.libro, "→ Vendedor:", libroEncontrado.nombreVendedor);
+  console.log("Pedido de libro:", libroEncontrado.libro, "→ Vendedor:", libroEncontrado.nombreVendedor);
 
-  // 🔔 Enviar notificación en tiempo real al vendedor
+  // Enviar notificación en tiempo real al vendedor
   realTimeEvent("nuevoPedido", {
     mensaje: "¡Tienes un nuevo pedido para tu libro!",
     libro: libroEncontrado.libro,
@@ -29,7 +29,7 @@ subscribePOSTEvent("pedirLibro", (data) => {
 
   // Devolver los datos del vendedor al front
   return {
-    mensaje: "✅ Pedido encontrado",
+    mensaje: "Pedido encontrado",
     vendedor: {
       nombre: libroEncontrado.nombreVendedor,
       mail: libroEncontrado.mailVendedor
