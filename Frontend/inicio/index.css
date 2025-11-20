@@ -1,44 +1,100 @@
-h1 {
-    margin-bottom: 32px;
-  font-size: 64px;}
-
-
-
-  .logo {
-    width: 300px;
-    height: 150px;
-  }
-
-  .botonlog{
-    width: 55%;
-    padding: 15px 0;
-    margin: 15px 0;
-    font-size:24px;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-  }
-
-.botonreg {
-  width: 50%;
-    padding: 15px 0;
-    margin: 12px 0;
-    font-size:24px;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #E2E2E2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
 
+.container {
+  background: #E2E2E2;
+  width: 100%;
+  max-width: 595px;
+  padding: 40px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
 
-  body{
-    background-color: rgb(226, 226, 226);
+.logo {
+  width: 320px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 1.2;
+  color: #000000;
+  margin: 20px 0;
+  white-space: nowrap;
+}
+
+.botonlog {
+  width: 420px;
+  max-width: 100%;
+  padding: 18px 32px;
+  margin: 10px 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: #000000;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+}
+
+.botonlog:hover {
+  background-color: #F5F5F5;
+}
+
+.botonreg {
+  width: 380px;
+  max-width: 100%;
+  padding: 18px 32px;
+  margin-top: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: #000000;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botonreg:hover {
+  background-color: #F5F5F5;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 36px;
   }
-  .container {
-    max-width: 700px;
-    margin: 60px auto;
-    background: rgb(226, 226, 226);
-    border-radius: 10px;
-    padding: 32px 24px;
-    text-align: center;
+  
+  .botonlog,
+  .botonreg {
+    font-size: 24px;
+    width: 90%;
+  }
+  
+  .logo {
+    width: 280px;
+  }
 }

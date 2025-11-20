@@ -4,44 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="registro.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
   <script src="registro.js" defer></script>
 </head>
 <body>
-  <button id="botonvolver" class="botonvuelta">MERCADO LIBRO</button>
+  <a href="#" id="botonvolver" class="logo-link">
+    <img src="../login/Logo minimalista gris.png" alt="Logo" class="logo">
+  </a>
 
   <div class="contenedor">
-    <h3 class="title">MERCADO LIBRO</h3>
-
-   
-      <div class="fila">
-        <input type="text" class="inputtexto" id="nombre" placeholder="NOMBRE">
-        <input type="text" class="inputtexto" id="apellido" placeholder="APELLIDO">
+    <div class="fila-inputs">
+      <div class="input-group">
+        <label>NOMBRE</label>
+        <input type="text" class="inputtexto" id="nombre">
       </div>
-
-      <div class="fila radios">
-        <h4>Género<h4>
-        <label><input type="radio" name="genero" class="inputopcion" id="hombre" value="hombre" > Hombre</label>
-        <label><input type="radio" name="genero" class="inputopcion" id="mujer" value="mujer"> Mujer</label>
-        <label><input type="radio" name="genero" class="inputopcion" id="otro" value="otro"> Otro</label>
+      <div class="input-group">
+        <label>APELLIDO</label>
+        <input type="text" class="inputtexto" id="apellido">
       </div>
+    </div>
 
-      <div class="fila radios">
-        <h4>Sede</h4>
-        <label><input type="radio" name="sede" class="inputopcion" id="montañeses" value="montañeses" > Montañeses</label>
-        <label><input type="radio" name="sede" class="inputopcion" id="almagro" value="almagro"> Almagro</label>
+    <div class="radio-section">
+      <label class="radio-title">Género</label>
+      <div class="radio-options">
+        <label class="radio-pill"><input type="radio" name="genero" id="hombre" value="hombre"> Hombre</label>
+        <label class="radio-pill"><input type="radio" name="genero" id="mujer" value="mujer"> Mujer</label>
+        <label class="radio-pill"><input type="radio" name="genero" id="otro" value="otro"> Otro</label>
       </div>
-<h1>   </h1>
-      <input type="text" class="inputtexto" id="mail" placeholder="Usuario" >
-<h1> </h1>
-      <input type="password" class="inputcontraseña" id="contraseña" placeholder="Contraseña" >
-      <h1> </h1>
-      <input type="password" class="inputcontraseña" id="repcontraseña" placeholder="Repetir contraseña" >
-<h1>                                                                                               </h1>
-      <button   id="botonentrar" class="botonsiguiente">Siguiente ➝</button>
-    </form>
+    </div>
+
+    <div class="radio-section">
+      <label class="radio-title">Sede</label>
+      <div class="radio-options">
+        <label class="radio-pill"><input type="radio" name="sede" id="montañeses" value="montañeses"> Montañeses</label>
+        <label class="radio-pill"><input type="radio" name="sede" id="almagro" value="almagro"> Almagro</label>
+      </div>
+    </div>
+
+    <div class="input-group full-width">
+      <label>Email</label>
+      <input type="text" class="inputtexto" id="mail">
+    </div>
+
+    <div class="input-group full-width">
+      <label>Contraseña</label>
+      <input type="password" class="inputtexto" id="contraseña">
+    </div>
+
+    <button id="botonentrar" class="botonsiguiente">SIGUIENTE</button>
   </div>
 </body>
 </html>
