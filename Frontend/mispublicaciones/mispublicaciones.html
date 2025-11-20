@@ -19,20 +19,31 @@
       <img src="image.png" class="logo" alt="logo">
     </button>
 
-    <input type="text" id="buscador" class="buscador-input" placeholder="Buscar...">
+    <div class="botones-derecha">
+      <button class="botonnotis" id="botonnotificaciones">
+        <img class="imgnotis" src="../compraoventa/notis.png" alt="Notificaciones">
+      </button>
 
-    <div class="espacio-derecha" aria-hidden="true"></div>
+      <button class="botonperf" id="botonperfil">
+        <img class="imgperfil" src="../compraoventa/perfil.png" alt="Perfil">
+      </button>
+
+      <button class="botonhom" id="botonhome">
+        <img class="imghome" src="../compraoventa/home.png" alt="Home">
+      </button>
+    </div>
+    <div class="lineagruesa"></div>
   </div>
-
-  <div class="lineagruesa"></div>
 </header>
 
 <main class="contenido">
   <h2 class="titulo-pagina">Mis publicaciones:</h2>
 
   <div class="grid-publicaciones">
-    <div class="card card-add" id="botonagregar" data-action="add">
-      <div class="add-sign">+</div>
+    <div class="card-add" id="botonagregar" data-action="add">
+      <div class="card-add-inner">
+        <div class="add-sign">+</div>
+      </div>
     </div>
     <!-- Las publicaciones se cargarán aquí dinámicamente -->
   </div>

@@ -61,19 +61,23 @@ function renderizarDetalle(libro){
 
     detalle.innerHTML = `
         <div class="portada-container">
-            <img src="${imagenSrc}" alt="${libro.libro}" class="portada" onerror="this.src='../img/libro-placeholder.png'">
+            <div class="portada-wrapper">
+                <img src="${imagenSrc}" alt="${libro.libro}" class="portada" onerror="this.src='../img/libro-placeholder.png'">
+            </div>
         </div>
         <div class="info-derecha">
             <h1 class="titulo-libro">${libro.libro}</h1>
             <div class="precio-libro">$${libro.precio}</div>
             
-            <p class="publicado-por">Publicado por</p>
-            <div class="vendedor-info">
-                <div class="avatar-vendedor"></div>
-                <span class="nombre-vendedor">${libro.nombreVendedor}</span>
+            <div class="publicado-por-container">
+                <p class="publicado-por">Publicado por</p>
+                <div class="vendedor-info">
+                    <div class="avatar-vendedor"></div>
+                    <span class="nombre-vendedor">${libro.nombreVendedor}</span>
+                </div>
             </div>
             
-            <div class="campo-info"><strong>Aula:</strong> ${libro.aula || 'L120'}</div>
+            <div class="campo-info">Aula: ${libro.aula || 'L120'}</div>
             
             <button id="botonPedir" class="boton-pedir">PEDIR</button>
         </div>
