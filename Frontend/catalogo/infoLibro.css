@@ -5,149 +5,192 @@
 }
 
 body {
-  background-color: #e1e1e1;
+  background-color: #E2E2E2;
   min-height: 100vh;
-  font-family: 'Poppins', 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Header - mismo estilo que compraoventa */
+/* Header */
 .encabezado {
-  background-color: #ffffff;
-  height: 110px;
+  background-color: #E2E2E2;
+  height: 130px;
   width: 100%;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px 0 40px;
+  padding: 0 60px;
 }
 
 .botonlogo {
-  height: 90px;
-  width: 100px;
-  background-color: transparent;
+  background: none;
   border: none;
   cursor: pointer;
   padding: 0;
 }
 
 .logo {
-  width: 100px;
+  width: 120px;
   height: 90px;
-  cursor: pointer;
+  display: block;
 }
 
 .botones-derecha {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .botonnotis,
 .botonperf,
 .botonhom {
-  height: 70px;
-  width: 70px;
-  background-color: transparent;
+  background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
   transition: transform 0.2s;
 }
 
 .botonnotis:hover,
 .botonperf:hover,
 .botonhom:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .imgnotis,
 .imgperfil,
 .imghome {
-  height: 70px;
-  width: 70px;
-}
-
-.lineagruesa {
-  width: 100%;
-  height: 6px;
-  background-color: #000000;
+  height: 60px;
+  width: 60px;
+  display: block;
 }
 
 /* Contenedor principal */
 .contenedor-principal {
-  position: relative;
-  min-height: calc(100vh - 116px);
-  padding: 20px 40px 40px 40px;
+  padding: 40px 80px;
+  min-height: calc(100vh - 130px);
 }
 
-/* Tarjeta de detalle del libro */
+/* Layout principal */
 .detalle-libro {
-  position: relative;
-  width: 100%;
-  min-height: 750px;
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  gap: 120px;
+  align-items: start;
+  max-width: 1400px;
 }
 
 /* Portada del libro - Lado izquierdo */
 .portada-container {
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  width: 450px;
-  height: 700px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-
-.portada-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  max-width: 420px;
-  max-height: 680px;
-  background-color: #000000;
-  border-radius: 30px;
-  border: 1px solid #000000;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
+  width: 310px;
+  height: 410px;
+  border: 8px solid #000000;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #ffffff;
+  grid-row: 1 / 3;
 }
 
 .portada {
-  width: calc(100% - 20px);
-  height: calc(100% - 20px);
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 25px;
+  display: block;
 }
 
 /* Información del libro - Lado derecho */
 .info-derecha {
-  position: absolute;
-  top: 0;
-  left: 520px;
-  right: 50px;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 0;
 }
 
 .titulo-libro {
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  width: calc(100% - 60px);
-  max-width: 700px;
-  font-family: 'Poppins', Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   color: #000000;
-  font-size: 44px;
-  letter-spacing: 0;
-  line-height: 1.2;
+  font-size: 56px;
+  line-height: 1.1;
   margin: 0;
 }
 
 .precio-libro {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  color: #000000;
+  font-size: 56px;
+  margin: 0;
+}
+
+.publicado-por-container {
+  margin: 10px 0 0 0;
+}
+
+.publicado-por {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: #000000;
+  font-size: 32px;
+  margin: 0 0 15px 0;
+}
+
+.vendedor-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar-vendedor {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  border: 3px solid #000000;
+  object-fit: cover;
+}
+
+.nombre-vendedor {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: #000000;
+  font-size: 32px;
+}
+
+.campo-info {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: #000000;
+  font-size: 32px;
+  margin: 15px 0 0 0;
+}
+
+/* Botón PEDIR */
+.boton-pedir {
+  width: 400px;
+  height: 75px;
+  background-color: #1E4BA6;
+  border-radius: 15px;
+  border: 4px solid #000000;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 20px;
+}
+
+.boton-pedir:hover {
+  background-color: #16396b;
+  transform: scale(1.02);
+}
+
+.boton-pedir:disabled {
+  background-color: #888888;
+  cursor: not-allowed;
+  transform: none;
+}
   position: absolute;
   top: 120px;
   left: 30px;

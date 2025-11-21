@@ -1,132 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: rgb(226, 226, 226);
+  background-color: #C0C0C0;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .encabezado {
-    background-color: rgb(255, 255, 255);
-    height: 110px;
+    background-color: #FFFFFF;
+    height: 130px;
     width: 100%;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;                
     align-items: center;          
-    justify-content: center;     
-    gap: 40px;                  
+    justify-content: space-between;
+    padding: 0 60px;
+    position: relative;
 }
 
+.botonlogo {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
 
+.logo {
+    width: 120px;
+    height: 90px;
+    display: block;
+}
 
+#buscador {
+    height: 55px;
+    width: 700px;
+    border: 2px solid #000000;
+    border-radius: 50px;
+    padding: 0 25px 0 55px;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    position: absolute;
+    left: 42%;
+    transform: translateX(-50%);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>');
+    background-repeat: no-repeat;
+    background-position: 18px center;
+    background-size: 26px;
+}
 
+#buscador::placeholder {
+    color: #999999;
+    font-family: "Poppins", sans-serif;
+}
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.botonnotis,
+.botonperf,
+.botonhom {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.imgnotis,
+.imgperfil,
+.imghome {
+    height: 60px;
+    width: 60px;
+    display: block;
+}
 
 .lineagruesa {
     width: 100%;
-    height: 4px;
-    background-color: black;
+    height: 3px;
+    background-color: #000000;
 }
 
+h1 {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    font-size: 48px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #000000;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 250px;
+    margin-bottom: 80px;
+}
 
 .botonaños {
-    height: 250px;
-    width: 30%;
-    margin-left: 200px;
- font-size: 30px;
- background-color: rgb(37, 66, 151);
- color: white;
-         
- }
- 
- 
- 
- .botonmaterias {
-     height: 250px;
-    width: 30%;
-    margin-left: 130px;
- font-size: 30px;
- background-color: rgb(255, 255, 255);
- }
- 
- 
- 
-    h1 {
-     text-align: center;
-     margin-top: 50px;
-     margin-bottom: 40px;
-     font-size: 35px;
-     font-weight: 1000;
-    }
-
-
-
-    .logo {
-        width: 100px;
-        height: 80px;
-        margin-left: px;
-    }
-   
-    input {
-        height: 30px;
-        width: 40%;
-        margin-left: 100px;              
-        margin-bottom: 10px;
-        border-radius: 64px;
-        margin-right: 100px;
-    
-    }
-   
-    .botonlogo {
-        height: 80px;
-margin-bottom: 30px;
-        width: 100px;
-        margin-left: -450px;
-        background-color: white;
-        border-color: white;
-        box-shadow: white;
-        margin-right: 150px;
-
-    }
-
-    
-.imgperfil {
-    height: 70px;
-    width: 70px;
-    margin-left: -8px;
-    margin-top:-3px;
+    height: 400px;
+    width: 480px;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    background-color: #1E4BA6;
+    color: #FFFFFF;
+    border: 3px solid #000000;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
-
-.botonperf {
-    height: 70px;
-    width: 70px;
-    margin-left:150px;
-    margin-right: -300px;
+.botonaños:hover {
+    transform: scale(1.02);
 }
 
-
-.botonhom {
-    height: 70px;
-    width: 70px;
-    margin-left: 250px;
-    margin-right: -400px;
-    
+.botonmaterias {
+    height: 400px;
+    width: 480px;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 3px solid #000000;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
-.imghome {
-    height: 70px;
-    width: 70px;
-    margin-left: -8px;
-    margin-top:-3px;
-}
-
-.botonnotis{
-    height: 70px;
-    width: 70px;
-    margin-right: -200px;
-
-}
-
-.imgnotis {
-    height: 70px;
-width: 70px;
-margin-left: -8px;
-margin-top:-3px;
+.botonmaterias:hover {
+    transform: scale(1.02);
 }

@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicar libro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="publicar.css">
 
   <!-- Scripts de SoqueTIC (en este orden) -->
@@ -57,17 +60,6 @@
         <label>Aula</label>
         <input class="inputformulario" id="aula" type="text" placeholder="">
 
-        <select id="año">
-          <option selected>Seleccionar año</option>
-          <option>7mo°</option>
-          <option>1°</option>
-          <option>2°</option>
-          <option>3°</option>
-          <option>4°</option>
-          <option>5°</option>
-
-        </select>
-
         <select id="materia">
           <option selected>Seleccionar materia</option>
           <option>Matemática</option>
@@ -80,6 +72,19 @@
           <option>Educación judía</option>
           <option>Cultura Judía</option>
         </select>
+
+        <select id="año">
+          <option selected>Seleccionar año</option>
+          <option>7mo°</option>
+          <option>1°</option>
+          <option>2°</option>
+          <option>3°</option>
+          <option>4°</option>
+          <option>5°</option>
+        </select>
+
+        <label>Precio</label>
+        <input class="inputformulario" id="precio" type="text" placeholder="">
 
         <button class="botonpublicar" id="botonpublicar">Publicar</button>
       </div>

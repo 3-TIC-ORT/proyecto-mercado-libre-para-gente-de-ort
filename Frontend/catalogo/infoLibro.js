@@ -58,12 +58,13 @@ if (!id) {
 
 function renderizarDetalle(libro){
     const imagenSrc = libro.foto && libro.foto !== 'sin-foto.jpg' ? libro.foto : '../img/libro-placeholder.png';
+    
+    // Obtener foto de perfil del vendedor si existe
+    const fotoPerfilSrc = libro.fotoVendedor || '../img/perfil-placeholder.png';
 
     detalle.innerHTML = `
         <div class="portada-container">
-            <div class="portada-wrapper">
-                <img src="${imagenSrc}" alt="${libro.libro}" class="portada" onerror="this.src='../img/libro-placeholder.png'">
-            </div>
+            <img src="${imagenSrc}" alt="${libro.libro}" class="portada" onerror="this.src='../img/libro-placeholder.png'">
         </div>
         <div class="info-derecha">
             <h1 class="titulo-libro">${libro.libro}</h1>
@@ -72,7 +73,7 @@ function renderizarDetalle(libro){
             <div class="publicado-por-container">
                 <p class="publicado-por">Publicado por</p>
                 <div class="vendedor-info">
-                    <div class="avatar-vendedor"></div>
+                    <img src="${fotoPerfilSrc}" alt="${libro.nombreVendedor}" class="avatar-vendedor" onerror="this.src='../img/perfil-placeholder.png'">
                     <span class="nombre-vendedor">${libro.nombreVendedor}</span>
                 </div>
             </div>

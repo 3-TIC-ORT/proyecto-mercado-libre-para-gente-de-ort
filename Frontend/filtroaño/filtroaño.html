@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Año</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     
     <!-- Scripts de SoqueTIC (en este orden) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
@@ -14,30 +17,35 @@
 <body>
 <header>
     <div class="encabezado">
+        <button id="botonvolver" class="botonlogo">
+            <img src="../compraoventa/logo nuevo.png" class="logo" alt="Logo">
+        </button>
 
+        <input type="text" id="buscador" placeholder="INICIAR TU BÚSQUEDA">
 
-<button   id="botonvolver"  class="botonlogo"> <img src="Captura de pantalla 2025-09-29 184607.png" class="logo"> </button>
-
-<input type="text" id="buscador" placeholder="Buscar..."> 
-
-
-<button class="botonnotis" id="botonnotificaciones" ><img class="imgnotis" src="../compraoventa/notis.png" alt=""></button>
-
-
-
-</div>
-
-
-</div>
-
-<div class="lineagruesa"></div>
-
+        <div class="header-right">
+            <button class="botonnotis" id="botonnotificaciones">
+                <img class="imgnotis" src="../compraoventa/notis.png" alt="Notificaciones">
+            </button>
+            <button class="botonperf" id="botonperfil">
+                <img class="imgperfil" src="../compraoventa/perfil.png" alt="Perfil">
+            </button>
+            <button class="botonhom" id="botonhome">
+                <img class="imghome" src="../compraoventa/home.png" alt="Home">
+            </button>
+        </div>
+    </div>
+    
+    <div class="lineagruesa"></div>
 </header>
-<button id="boton7mo" class="botones">7°mo grado</button>
+
+<div class="buttons-container">
+    <button id="boton7mo" class="botones">7°mo grado</button>
     <button id="boton1ero" class="botones">1°er año</button>
     <button id="boton2do" class="botones">2°do año</button>
     <button id="boton3ro" class="botones">3°er año</button>
     <button id="boton4to" class="botones">4°to año</button>
     <button id="boton5to" class="botones">5°to año</button>
+</div>
 </body>
 </html>

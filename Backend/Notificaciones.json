@@ -122,5 +122,30 @@
     "estado": "aceptado",
     "mensaje": "Tu pedido del libro \"historia segundo\" fue aceptado por hola",
     "fecha": "2025-11-20T18:43:20.998Z"
+  },
+  {
+    "id": 1763684350885,
+    "tipo": "pedido",
+    "idLibro": 1763684298546,
+    "libroNombre": "Libro de estudio",
+    "mailVendedor": "a",
+    "nombreVendedor": "a",
+    "mailComprador": "sebi@",
+    "nombreComprador": "hola",
+    "estado": "aceptado",
+    "fecha": "2025-11-21T00:19:10.885Z"
+  },
+  {
+    "id": 1763684390740,
+    "tipo": "respuesta",
+    "idLibro": 1763684298546,
+    "libroNombre": "Libro de estudio",
+    "mailVendedor": "a",
+    "nombreVendedor": "a",
+    "mailComprador": "sebi@",
+    "nombreComprador": "hola",
+    "estado": "aceptado",
+    "mensaje": "Tu pedido del libro \"Libro de estudio\" fue aceptado por a",
+    "fecha": "2025-11-21T00:19:50.740Z"
   }
 ]

@@ -22,7 +22,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px 0 14px;
+  padding: 0 40px;
   position: relative;
 }
 
@@ -36,22 +36,22 @@ html, body {
 }
 
 .encabezado .logo {
-  width: 105px;
-  height: 92px;
+  width: 90px;
+  height: 75px;
   display: block;
 }
 
 .botones-derecha {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .botonnotis,
 .botonperf,
 .botonhom {
-  height: 56px;
-  width: 56px;
+  height: 55px;
+  width: 55px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -67,8 +67,8 @@ html, body {
 .imgnotis,
 .imgperfil,
 .imghome {
-  height: 56px;
-  width: 56px;
+  height: 55px;
+  width: 55px;
 }
 
 .lineagruesa {
@@ -76,7 +76,7 @@ html, body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 6px;
+  height: 4px;
   background-color: #000000;
   z-index: 10;
 }
@@ -84,26 +84,28 @@ html, body {
 /* Contenido principal */
 .contenido {
   background: #24537d;
-  padding: 50px 49px 60px;
+  padding: 50px;
   min-height: calc(100vh - 120px);
-  overflow-x: auto;
-  overflow-y: hidden;
 }
 
 .titulo-pagina {
   color: #ffffff;
   font-family: 'Quicksand', sans-serif;
+  font-optical-sizing: auto;
   font-weight: 600;
-  font-size: 64px;
-  margin: 20px 0 30px 0;
+  font-style: normal;
+  font-size: 56px;
+  margin: 0 0 50px 20px;
   letter-spacing: 0;
 }
 
 .grid-publicaciones {
   display: flex;
   align-items: flex-start;
-  gap: 50px;
-  padding-bottom: 20px;
+  gap: 40px;
+  padding: 0 20px 40px;
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
 /* Tarjeta de publicación */
@@ -111,75 +113,81 @@ html, body {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 280px;
-  height: 400px;
+  width: 240px;
   flex-shrink: 0;
+  margin-bottom: 30px;
 }
 
 .card-wrapper {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  width: 240px;
+  border-radius: 15px;
   background-color: #000000;
-  border-radius: 25px;
-  border: 1px solid #000000;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 8px;
-  width: 280px;
-  height: 365px;
+  border: 4px solid #000000;
+  padding: 4px;
+  overflow: visible;
 }
 
 .card-inner {
-  position: relative;
-  width: 264px;
-  height: 349px;
+  width: 100%;
+  height: 320px;
   background-color: #ffffff;
-  border-radius: 18px;
-  border: 3px solid #000000;
-  overflow: hidden;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  overflow: hidden;
+   border-left: 7px solid #000000;
+  border-right: 7px solid #000000;
+  border: none;
+  border-bottom: none;
 }
 
 .card-imagen {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 15px;
 }
 
 /* Precio */
 .card-precio {
-  position: absolute;
-  bottom: -45px;
-  left: 50%;
-  transform: translateX(-50%);
+  background-color: #ffffff;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
   font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
   font-weight: 900;
   font-style: italic;
-  color: #080000;
-  font-size: 38px;
-  letter-spacing: 0;
-  white-space: nowrap;
+  color: #000000;
+  font-size: 32px;
+  border-top: none;
+  border-left: 7px solid #000000;
+  border-right: 7px solid #000000;
+  border-bottom: 7px solid #000000;
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
 }
 
 /* Botón eliminar */
 .btn-eliminar {
   position: absolute;
-  bottom: -50px;
-  right: 12px;
-  width: 58px;
-  height: 58px;
+  bottom: -10px;
+  right: -10px;
+  width: 50px;
+  height: 50px;
   background-color: #ff0000;
-  border-radius: 14px;
-  border: 1px solid #000000;
+  border-radius: 10px;
+  border: 4px solid #000000;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
+  z-index: 10;
 }
 
 .btn-eliminar:hover {
@@ -187,23 +195,20 @@ html, body {
 }
 
 .btn-eliminar svg {
-  width: 34px;
-  height: 42px;
+  width: 28px;
+  height: 35px;
   fill: #ffffff;
 }
 
-/* Botón agregar */
 .card-add {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 280px;
-  height: 365px;
+  width: 240px;
+  height: 400px;
   background-color: #000000;
-  border-radius: 25px;
-  border: 1px solid #000000;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 8px;
+  border-radius: 15px;
+  border: 4px solid #000000;
   cursor: pointer;
   transition: transform 0.2s;
   flex-shrink: 0;
@@ -214,20 +219,19 @@ html, body {
 }
 
 .card-add-inner {
-  width: 264px;
-  height: 349px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
   background-color: #ffffff;
-  border-radius: 18px;
-  border: 3px solid #000000;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .add-sign {
-  font-size: 220px;
+  font-size: 230px;
   color: #000000;
-  font-weight: 700;
+  font-weight: 300;
   line-height: 1;
   user-select: none;
 }

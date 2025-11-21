@@ -7,9 +7,11 @@ let librosFiltrados = [];
 
 // Obtener elementos del DOM
 const productGrid = document.querySelector(".product-grid");
+const filterTitle = document.getElementById("filterTitle");
 const botonNotificaciones = document.getElementById("botonnotificaciones");
 const botonPerfil = document.getElementById("botonperfil");
 const botonHome = document.getElementById("botonhome");
+const botonVolver = document.getElementById("botonvolver");
 
 // Navegación
 botonNotificaciones.addEventListener("click", function() {
@@ -21,6 +23,10 @@ botonPerfil.addEventListener("click", function() {
 });
 
 botonHome.addEventListener("click", function() {
+    window.location.href = "../compraoventa/compraoventa.html";
+});
+
+botonVolver.addEventListener("click", function() {
     window.location.href = "../compraoventa/compraoventa.html";
 });
 
@@ -47,6 +53,15 @@ function aplicarFiltros() {
     // Obtener filtros guardados
     const añoFiltro = localStorage.getItem("filtroAño");
     const materiaFiltro = localStorage.getItem("filtroMateria");
+
+    // Actualizar título dinámicamente
+    if (materiaFiltro) {
+        filterTitle.textContent = materiaFiltro;
+    } else if (añoFiltro) {
+        filterTitle.textContent = añoFiltro;
+    } else {
+        filterTitle.textContent = "Todos los libros";
+    }
 
     // Limpiar filtros del localStorage después de usarlos
     localStorage.removeItem("filtroAño");
@@ -82,7 +97,7 @@ function mostrarLibros(libros) {
         return;
     }
 
-    // Crear una tarjeta para cada libro (ahora la tarjeta es clicable y redirige a la página de detalle)
+    // Crear una tarjeta para cada libro
     libros.forEach(libro => {
         const card = document.createElement("div");
         card.className = "product-card";
@@ -92,17 +107,17 @@ function mostrarLibros(libros) {
             ? libro.foto 
             : "../img/libro-placeholder.png";
 
-        // Construir contenido sin el botón de pedir aquí (el botón estará en la página de detalle)
+        // Construir contenido con la nueva estructura de mispublicaciones
         card.innerHTML = `
-            <img src="${imagenSrc}" alt="${libro.libro}" onerror="this.src='../img/libro-placeholder.png'">
-            <h3>${libro.libro}</h3>
-            <p>${libro.materia} - ${libro.año}</p>
-            <p><strong>Vendedor:</strong> ${libro.nombreVendedor}</p>
-            <span class="price">$${libro.precio}</span>
+            <div class="card-wrapper">
+                <div class="card-inner">
+                    <img class="card-imagen" src="${imagenSrc}" alt="${libro.libro}" onerror="this.src='../img/libro-placeholder.png'">
+                </div>
+                <div class="card-precio">$${libro.precio}</div>
+            </div>
         `;
 
-        // Hacer la tarjeta clicable: ir a infoLibro.html con query param id
-        card.style.cursor = 'pointer';
+        // Hacer la tarjeta clicable
         card.addEventListener('click', () => {
             window.location.href = `infoLibro.html?id=${libro.id}`;
         });

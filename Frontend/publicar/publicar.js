@@ -40,10 +40,11 @@ botonPublicar.addEventListener("click", async function(event) {
     const aula = document.getElementById("aula").value;
     const año = document.getElementById("año").value;
     const materia = document.getElementById("materia").value;
+    const precio = document.getElementById("precio").value;
     const portada = document.getElementById("inputPortada").files[0];
 
     // Validar campos
-    if (!titulo || !aula || año === "Seleccionar año" || materia === "Seleccionar materia") {
+    if (!titulo || !aula || año === "Seleccionar año" || materia === "Seleccionar materia" || !precio) {
         alert("Por favor, completa todos los campos obligatorios");
         return;
     }
@@ -71,7 +72,7 @@ botonPublicar.addEventListener("click", async function(event) {
             materia: materia,
             año: año,
             sede: usuario.sede || aula,
-            precio: "0", // Puedes agregar un campo de precio si lo necesitas
+            precio: precio,
             foto: imagenBase64,
             descripcion: "",
             nombreVendedor: usuario.nombre || "Usuario",
