@@ -8,6 +8,7 @@ let librosFiltrados = [];
 // Obtener elementos del DOM
 const productGrid = document.querySelector(".product-grid");
 const filterTitle = document.getElementById("filterTitle");
+const buscador = document.getElementById("buscador");
 const botonNotificaciones = document.getElementById("botonnotificaciones");
 const botonPerfil = document.getElementById("botonperfil");
 const botonHome = document.getElementById("botonhome");
@@ -28,6 +29,18 @@ botonHome.addEventListener("click", function() {
 
 botonVolver.addEventListener("click", function() {
     window.location.href = "../compraoventa/compraoventa.html";
+});
+
+// Búsqueda en tiempo real
+buscador.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        const terminoBusqueda = buscador.value.trim();
+        if (terminoBusqueda !== "") {
+            // Cambiar el título a "Resultados de búsqueda"
+            filterTitle.textContent = `Resultados de búsqueda`;
+        }
+        buscarLibros();
+    }
 });
 
 // Cargar libros al iniciar
@@ -53,6 +66,7 @@ function aplicarFiltros() {
     // Obtener filtros guardados
     const añoFiltro = localStorage.getItem("filtroAño");
     const materiaFiltro = localStorage.getItem("filtroMateria");
+    const terminoBusqueda = localStorage.getItem("terminoBusqueda");
 
     // Actualizar título dinámicamente
     if (materiaFiltro) {
@@ -61,6 +75,12 @@ function aplicarFiltros() {
         filterTitle.textContent = añoFiltro;
     } else {
         filterTitle.textContent = "Todos los libros";
+    }
+
+    // Si hay término de búsqueda, ponerlo en el input
+    if (terminoBusqueda) {
+        buscador.value = terminoBusqueda;
+        localStorage.removeItem("terminoBusqueda");
     }
 
     // Limpiar filtros del localStorage después de usarlos
@@ -83,8 +103,32 @@ function aplicarFiltros() {
         return cumpleAño && cumpleMateria;
     });
 
-    // Mostrar libros filtrados
-    mostrarLibros(librosFiltrados);
+    // Mostrar libros filtrados (o buscados si hay término)
+    if (terminoBusqueda) {
+        buscarLibros();
+    } else {
+        mostrarLibros(librosFiltrados);
+    }
+}
+
+// Función para buscar libros por nombre
+function buscarLibros() {
+    const terminoBusqueda = buscador.value.toLowerCase().trim();
+    
+    if (terminoBusqueda === "") {
+        // Si no hay búsqueda, mostrar los libros filtrados normalmente
+        mostrarLibros(librosFiltrados);
+        return;
+    }
+    
+    // Buscar en TODOS los libros, no solo los filtrados
+    const librosEncontrados = todosLosLibros.filter(libro => {
+        const nombreLibro = libro.libro.toLowerCase();
+        // Búsqueda flexible: verifica si el nombre contiene el término
+        return nombreLibro.includes(terminoBusqueda);
+    });
+    
+    mostrarLibros(librosEncontrados);
 }
 
 // Función para mostrar libros en el catálogo
@@ -142,15 +186,15 @@ function mostrarMensaje(mensaje) {
 // Función para pedir un libro
 function pedirLibro(idLibro) {
     // Verificar que el usuario esté logueado
-    const usuarioActual = localStorage.getItem("usuarioActual");
+    const datosUsuarioStr = localStorage.getItem("datosUsuario");
     
-    if (!usuarioActual) {
+    if (!datosUsuarioStr) {
         alert("Debes iniciar sesión para pedir un libro");
         window.location.href = "../login/login.html";
         return;
     }
 
-    const usuario = JSON.parse(usuarioActual);
+    const usuario = JSON.parse(datosUsuarioStr);
     const libro = todosLosLibros.find(l => l.id === idLibro);
     
     if (!libro) {

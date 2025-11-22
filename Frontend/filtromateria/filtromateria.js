@@ -1,6 +1,19 @@
 // Conectar al servidor
 connect2Server(3000);
 
+const buscador = document.getElementById("buscador");
+
+// Funcionalidad de búsqueda
+buscador.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        const terminoBusqueda = buscador.value.trim();
+        if (terminoBusqueda !== "") {
+            localStorage.setItem("terminoBusqueda", terminoBusqueda);
+            window.location.href = "../catalogo/catalogo.html";
+        }
+    }
+});
+
 const botonCJ = document.getElementById("botoncj");
 
 botonCJ.addEventListener("click", function() {

@@ -1,8 +1,20 @@
 // Conectar al servidor
 connect2Server(3000);
 
+const buscador = document.getElementById("buscador");
 const botonVolver = document.getElementById("botonvolver");
 const botonPublicar = document.getElementById("botonpublicar");
+
+// Funcionalidad de búsqueda
+buscador.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        const terminoBusqueda = buscador.value.trim();
+        if (terminoBusqueda !== "") {
+            localStorage.setItem("terminoBusqueda", terminoBusqueda);
+            window.location.href = "../catalogo/catalogo.html";
+        }
+    }
+});
 
 // Botones de navegación
 botonVolver.addEventListener("click", function() {
@@ -50,15 +62,15 @@ botonPublicar.addEventListener("click", async function(event) {
     }
 
     try {
-        // Obtener usuario actual del localStorage
-        const usuarioActual = localStorage.getItem("usuarioActual");
-        if (!usuarioActual) {
+        // Obtener datos del usuario actual del localStorage
+        const datosUsuarioStr = localStorage.getItem("datosUsuario");
+        if (!datosUsuarioStr) {
             alert("Debes iniciar sesión para publicar un libro");
             window.location.href = "../login/login.html";
             return;
         }
 
-        const usuario = JSON.parse(usuarioActual);
+        const usuario = JSON.parse(datosUsuarioStr);
 
         // Convertir imagen a base64 si existe
         let imagenBase64 = "sin-foto.jpg";
@@ -71,13 +83,16 @@ botonPublicar.addEventListener("click", async function(event) {
             libro: titulo,
             materia: materia,
             año: año,
-            sede: usuario.sede || aula,
+            aula: aula,
+            sede: usuario.sede || "Montañeses",
             precio: precio,
             foto: imagenBase64,
             descripcion: "",
             nombreVendedor: usuario.nombre || "Usuario",
             mailVendedor: usuario.mail
         };
+
+        console.log("Datos del libro a publicar:", datosLibro);
 
         // Enviar al backend usando SoqueTIC
         postEvent("venderLibro", datosLibro, function(respuesta) {

@@ -52,15 +52,36 @@ if (!id) {
             return;
         }
 
-        renderizarDetalle(libro);
+        // Obtener foto de perfil del vendedor
+        obtenerFotoVendedor(libro);
     });
 }
 
-function renderizarDetalle(libro){
+function obtenerFotoVendedor(libro) {
+    // Leer usuarios.json para obtener la foto de perfil del vendedor
+    postEvent('loginUsuario', { mail: libro.mailVendedor, password: 'fake' }, function(response) {
+        // Esto fallará pero necesitamos otro endpoint
+        renderizarDetalle(libro, '../perfil/cuenta 2.png');
+    });
+    
+    // Por ahora, buscar en usuarios si están cargados o usar foto por defecto
+    fetch('../../Backend/Usuarios.json')
+        .then(response => response.json())
+        .then(usuarios => {
+            const vendedor = usuarios.find(u => u.mail === libro.mailVendedor);
+            const fotoVendedor = vendedor && vendedor.fotodeperfil ? vendedor.fotodeperfil : '../perfil/cuenta 2.png';
+            renderizarDetalle(libro, fotoVendedor);
+        })
+        .catch(() => {
+            renderizarDetalle(libro, '../perfil/cuenta 2.png');
+        });
+}
+
+function renderizarDetalle(libro, fotoVendedor){
     const imagenSrc = libro.foto && libro.foto !== 'sin-foto.jpg' ? libro.foto : '../img/libro-placeholder.png';
     
-    // Obtener foto de perfil del vendedor si existe
-    const fotoPerfilSrc = libro.fotoVendedor || '../img/perfil-placeholder.png';
+    // Usar la foto del vendedor pasada como parámetro o la por defecto
+    const fotoPerfilSrc = fotoVendedor || '../perfil/cuenta 2.png';
 
     detalle.innerHTML = `
         <div class="portada-container">
@@ -73,7 +94,7 @@ function renderizarDetalle(libro){
             <div class="publicado-por-container">
                 <p class="publicado-por">Publicado por</p>
                 <div class="vendedor-info">
-                    <img src="${fotoPerfilSrc}" alt="${libro.nombreVendedor}" class="avatar-vendedor" onerror="this.src='../img/perfil-placeholder.png'">
+                    <img src="${fotoPerfilSrc}" alt="${libro.nombreVendedor}" class="avatar-vendedor" onerror="this.src='../perfil/cuenta 2.png'">
                     <span class="nombre-vendedor">${libro.nombreVendedor}</span>
                 </div>
             </div>
@@ -88,9 +109,9 @@ function renderizarDetalle(libro){
     botonPedir.addEventListener('click', () => pedirLibroDetalle(libro.id, libro.mailVendedor, libro.nombreVendedor, libro.libro));
 
     // Deshabilitar si el usuario es el propio vendedor
-    const usuarioActual = localStorage.getItem('usuarioActual');
-    if (usuarioActual){
-        const usuario = JSON.parse(usuarioActual);
+    const datosUsuarioStr = localStorage.getItem('datosUsuario');
+    if (datosUsuarioStr){
+        const usuario = JSON.parse(datosUsuarioStr);
         if (usuario.mail === libro.mailVendedor){
             botonPedir.disabled = true;
             botonPedir.textContent = 'Es tu publicación';
@@ -99,14 +120,14 @@ function renderizarDetalle(libro){
 }
 
 function pedirLibroDetalle(idLibro, mailVendedor, nombreVendedor, nombreLibro){
-    const usuarioActual = localStorage.getItem('usuarioActual');
-    if (!usuarioActual){
+    const datosUsuarioStr = localStorage.getItem('datosUsuario');
+    if (!datosUsuarioStr){
         alert('Debes iniciar sesión para pedir un libro');
         window.location.href = '../login/login.html';
         return;
     }
 
-    const usuario = JSON.parse(usuarioActual);
+    const usuario = JSON.parse(datosUsuarioStr);
 
     // Prevenir pedir el propio libro
     if (usuario.mail === mailVendedor){

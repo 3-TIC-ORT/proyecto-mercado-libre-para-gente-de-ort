@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notificaciones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     
     <!-- Scripts de SoqueTIC (en este orden) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
@@ -14,17 +17,25 @@
 <body>
     <header>
         <div class="encabezado">
-            <button id="botonvolver" class="botonlogo">MERCADO LIBRO</button>
+            <button id="botonvolver" class="botonlogo">
+                <img src="../login/Logo minimalista gris.png" class="logo" alt="Logo">
+            </button>
+            
+            <div class="notif-header-center">
+                <svg class="notif-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22ZM18 16V11C18 7.93 16.37 5.36 13.5 4.68V4C13.5 3.17 12.83 2.5 12 2.5C11.17 2.5 10.5 3.17 10.5 4V4.68C7.64 5.36 6 7.92 6 11V16L4 18V19H20V18L18 16Z" fill="#000000"/>
+                </svg>
+                <h1 class="notif-title" id="notifTitle">0 notificaciones</h1>
+            </div>
+            
+            <button class="botonhome" id="botonhome">
+                <img class="imghome" src="../catalogo/home gris.png" alt="Home">
+            </button>
         </div>
-        
-        <h1></h1>
-        
         <div class="lineagruesa"></div>
     </header>
 
     <div class="contenedor">
-        <h2 style="text-align: center; margin: 20px 0;">Mis Notificaciones</h2>
-        
         <!-- Contenedor de notificaciones que se llenará dinámicamente -->
         <div class="notificaciones-lista" id="notificacionesLista">
             <!-- Las notificaciones se cargarán aquí dinámicamente -->

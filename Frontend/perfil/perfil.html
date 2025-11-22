@@ -4,35 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil - Mercado Libro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
   <link rel="stylesheet" href="perfil.css">
   <script src="perfil.js" defer></script>
 </head>
 <body>
   <header>
-    <h1 class="logo">MERCADO LIBRO</h1>
-   <button id="botonhom" class="botonhome"> <img src="home.jpg" alt="home" class="home-icon"></button>
+    <div class="encabezado">
+      <button id="botonvolver" class="botonlogo">
+        <img src="../login/Logo minimalista gris.png" class="logo" alt="Logo">
+      </button>
+      
+      <button class="botonhome" id="botonhome">
+        <img class="imghome" src="../catalogo/home gris.png" alt="Home">
+      </button>
+    </div>
   </header>
 
   <main>
-    <div class="profile">
-      <div class="avatar">
-        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar">
-        <div class="edit-icon">✏️</div>
+    <div class="profile-container">
+      <div class="avatar-section">
+        <div class="avatar-wrapper">
+          <img src="cuenta 2.png" alt="Foto de perfil" class="avatar-img" id="avatarImg">
+          <button type="button" class="edit-icon" id="editIcon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="#FFFFFF"/>
+            </svg>
+          </button>
+        </div>
+        <input type="file" id="inputFoto" accept="image/*" style="display: none;">
       </div>
 
-      <form class="profile-form">
-        <label for="nombre">NOMBRE</label>
-        <input type="text" class="nomb" id="nombre">
-
-        <label for="apellido">APELLIDO</label>
-        <input type="text" class="ape" id="apellido">
-
-        <label for="sede">SEDE</label>
-        <div class="input-group">
-          <input class="sed" type="text" id="sede">
-          <button type="submit" class="guardar">GUARDAR</button>
+      <div class="profile-form">
+        <div class="form-group">
+          <label for="nombre">NOMBRE</label>
+          <input type="text" id="nombre" required>
         </div>
-      </form>
+
+        <div class="form-group">
+          <label for="apellido">APELLIDO</label>
+          <input type="text" id="apellido" required>
+        </div>
+
+        <div class="form-group-with-button">
+          <div class="form-group">
+            <label for="sede">SEDE</label>
+            <select id="sede" required>
+              <option value="Montañeses">Montañeses</option>
+              <option value="Almagro">Almagro</option>
+            </select>
+          </div>
+          <button type="button" class="btn-guardar" id="btnGuardar">GUARDAR</button>
+        </div>
+      </div>
     </div>
   </main>
 </body>

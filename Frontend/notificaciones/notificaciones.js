@@ -2,9 +2,15 @@
 connect2Server(3000);
 
 const botonVolver = document.getElementById("botonvolver");
+const botonHome = document.getElementById("botonhome");
 const notificacionesLista = document.getElementById("notificacionesLista");
+const notifTitle = document.getElementById("notifTitle");
 
 botonVolver.addEventListener("click", function() {
+    window.location.href = "../compraoventa/compraoventa.html";
+});
+
+botonHome.addEventListener("click", function() {
     window.location.href = "../compraoventa/compraoventa.html";
 });
 
@@ -30,13 +36,20 @@ function cargarNotificaciones() {
         return;
     }
 
-    const usuario = JSON.parse(usuarioActual);
+    const datosUsuarioStr = localStorage.getItem("datosUsuario");
+    if (!datosUsuarioStr) {
+        window.location.href = "../login/login.html";
+        return;
+    }
+    
+    const usuario = JSON.parse(datosUsuarioStr);
 
     postEvent("obtenerNotificaciones", {
         mailUsuario: usuario.mail
     }, function(respuesta) {
         if (respuesta.notificaciones) {
-            mostrarNotificaciones(respuesta.notificaciones, usuario.mail);
+            // Cargar fotos de perfil antes de mostrar notificaciones
+            cargarFotosUsuarios(respuesta.notificaciones, usuario.mail);
         } else {
             notificacionesLista.innerHTML = `
                 <div style="text-align: center; padding: 40px;">
@@ -47,111 +60,122 @@ function cargarNotificaciones() {
     });
 }
 
+// Función para cargar fotos de usuarios desde Usuarios.json
+async function cargarFotosUsuarios(notificaciones, mailUsuario) {
+    try {
+        const response = await fetch('../../Backend/Usuarios.json');
+        const usuarios = await response.json();
+        
+        // Agregar fotos a las notificaciones
+        notificaciones.forEach(notif => {
+            const comprador = usuarios.find(u => u.mail === notif.mailComprador);
+            const vendedor = usuarios.find(u => u.mail === notif.mailVendedor);
+            
+            notif.fotoComprador = comprador && comprador.fotodeperfil ? comprador.fotodeperfil : '../perfil/cuenta 2.png';
+            notif.fotoVendedor = vendedor && vendedor.fotodeperfil ? vendedor.fotodeperfil : '../perfil/cuenta 2.png';
+        });
+        
+        mostrarNotificaciones(notificaciones, mailUsuario);
+    } catch (error) {
+        console.error("Error al cargar fotos de usuarios:", error);
+        // Mostrar notificaciones sin fotos si falla
+        notificaciones.forEach(notif => {
+            notif.fotoComprador = '../perfil/cuenta 2.png';
+            notif.fotoVendedor = '../perfil/cuenta 2.png';
+        });
+        mostrarNotificaciones(notificaciones, mailUsuario);
+    }
+}
+
 // Función para mostrar las notificaciones
 function mostrarNotificaciones(notificaciones, mailUsuario) {
     if (notificaciones.length === 0) {
         notificacionesLista.innerHTML = `
-            <div style="text-align: center; padding: 40px;">
+            <div class="mensaje-vacio">
                 <h3>No tienes notificaciones</h3>
             </div>
         `;
+        notifTitle.textContent = "0 notificaciones";
         return;
     }
+
+    // Contar notificaciones pendientes
+    const pendientes = notificaciones.filter(n => n.estado === "pendiente" && n.mailVendedor === mailUsuario).length;
+    notifTitle.textContent = `${pendientes} notificacion${pendientes !== 1 ? 'es' : ''}`;
 
     notificacionesLista.innerHTML = "";
 
     notificaciones.forEach(notif => {
         const card = document.createElement("div");
-        card.className = "notificacion-card";
         
-        // Determinar si el usuario es el vendedor o comprador
+        // Determinar si el usuario es el vendedor
         const esVendedor = notif.mailVendedor === mailUsuario;
         
-        // Determinar el estilo según el tipo y estado
-        let estadoClase = "";
         let contenidoHTML = "";
+        let claseEstado = "";
 
         if (notif.tipo === "pedido" && esVendedor) {
             // Notificación de pedido recibido (para vendedor)
+            const fotoComprador = notif.fotoComprador || '../perfil/cuenta 2.png';
+            
             if (notif.estado === "pendiente") {
-                estadoClase = "pendiente";
+                claseEstado = "pendiente";
                 contenidoHTML = `
-                    <div class="notif-header">
-                        <span class="notif-icono">📬</span>
-                        <span class="notif-titulo">Nuevo Pedido</span>
-                        <span class="notif-estado estado-pendiente">Pendiente</span>
-                    </div>
-                    <div class="notif-body">
-                        <p><strong>${notif.nombreComprador}</strong> está interesado en tu libro:</p>
-                        <p class="notif-libro">"${notif.libroNombre}"</p>
-                        <p class="notif-fecha">${formatearFecha(notif.fecha)}</p>
+                    <img src="${fotoComprador}" alt="${notif.nombreComprador}" class="notif-avatar" onerror="this.src='../perfil/cuenta 2.png'">
+                    <div class="notif-content">
+                        <h3 class="notif-nombre">${notif.nombreComprador}</h3>
+                        <p class="notif-mensaje">Está interesado en un libro.</p>
                     </div>
                     <div class="notif-acciones">
-                        <button class="btn-aceptar" onclick="aceptarPedido(${notif.id})">✓ Aceptar</button>
-                        <button class="btn-rechazar" onclick="rechazarPedido(${notif.id})">✗ Rechazar</button>
+                        <button class="btn-aceptar" onclick="aceptarPedido(${notif.id})">Aceptar</button>
+                        <button class="btn-rechazar" onclick="rechazarPedido(${notif.id})">Rechazar</button>
                     </div>
                 `;
             } else if (notif.estado === "aceptado") {
-                estadoClase = "aceptado";
+                claseEstado = "aceptada";
                 contenidoHTML = `
-                    <div class="notif-header">
-                        <span class="notif-icono">✅</span>
-                        <span class="notif-titulo">Pedido Aceptado</span>
-                        <span class="notif-estado estado-aceptado">Aceptado</span>
-                    </div>
-                    <div class="notif-body">
-                        <p>Aceptaste el pedido de <strong>${notif.nombreComprador}</strong></p>
-                        <p class="notif-libro">"${notif.libroNombre}"</p>
-                        <p class="notif-fecha">${formatearFecha(notif.fecha)}</p>
+                    <img src="${fotoComprador}" alt="${notif.nombreComprador}" class="notif-avatar" onerror="this.src='../perfil/cuenta 2.png'">
+                    <div class="notif-content">
+                        <h3 class="notif-nombre">${notif.nombreComprador}</h3>
+                        <p class="notif-mensaje">Pedido aceptado - "${notif.libroNombre}"</p>
                     </div>
                 `;
             } else if (notif.estado === "rechazado") {
-                estadoClase = "rechazado";
+                claseEstado = "rechazada";
                 contenidoHTML = `
-                    <div class="notif-header">
-                        <span class="notif-icono">❌</span>
-                        <span class="notif-titulo">Pedido Rechazado</span>
-                        <span class="notif-estado estado-rechazado">Rechazado</span>
-                    </div>
-                    <div class="notif-body">
-                        <p>Rechazaste el pedido de <strong>${notif.nombreComprador}</strong></p>
-                        <p class="notif-libro">"${notif.libroNombre}"</p>
-                        <p class="notif-fecha">${formatearFecha(notif.fecha)}</p>
+                    <img src="${fotoComprador}" alt="${notif.nombreComprador}" class="notif-avatar" onerror="this.src='../perfil/cuenta 2.png'">
+                    <div class="notif-content">
+                        <h3 class="notif-nombre">${notif.nombreComprador}</h3>
+                        <p class="notif-mensaje">Pedido rechazado - "${notif.libroNombre}"</p>
                     </div>
                 `;
             }
         } else if (notif.tipo === "respuesta" && !esVendedor) {
             // Notificación de respuesta (para comprador)
+            const fotoVendedor = notif.fotoVendedor || '../perfil/cuenta 2.png';
+            
             if (notif.estado === "aceptado") {
-                estadoClase = "aceptado";
+                claseEstado = "aceptada";
                 contenidoHTML = `
-                    <div class="notif-header">
-                        <span class="notif-icono">🎉</span>
-                        <span class="notif-titulo">¡Pedido Aceptado!</span>
-                        <span class="notif-estado estado-aceptado">Aceptado</span>
-                    </div>
-                    <div class="notif-body">
-                        <p>${notif.mensaje}</p>
-                        <p class="notif-fecha">${formatearFecha(notif.fecha)}</p>
+                    <img src="${fotoVendedor}" alt="${notif.nombreVendedor}" class="notif-avatar" onerror="this.src='../perfil/cuenta 2.png'">
+                    <div class="notif-content">
+                        <h3 class="notif-nombre">${notif.nombreVendedor}</h3>
+                        <p class="notif-mensaje">Aceptó tu pedido - "${notif.libroNombre}"</p>
                     </div>
                 `;
             } else if (notif.estado === "rechazado") {
-                estadoClase = "rechazado";
+                claseEstado = "rechazada";
                 contenidoHTML = `
-                    <div class="notif-header">
-                        <span class="notif-icono">😔</span>
-                        <span class="notif-titulo">Pedido Rechazado</span>
-                        <span class="notif-estado estado-rechazado">Rechazado</span>
-                    </div>
-                    <div class="notif-body">
-                        <p>${notif.mensaje}</p>
-                        <p class="notif-fecha">${formatearFecha(notif.fecha)}</p>
+                    <img src="${fotoVendedor}" alt="${notif.nombreVendedor}" class="notif-avatar" onerror="this.src='../perfil/cuenta 2.png'">
+                    <div class="notif-content">
+                        <h3 class="notif-nombre">${notif.nombreVendedor}</h3>
+                        <p class="notif-mensaje">Rechazó tu pedido - "${notif.libroNombre}"</p>
                     </div>
                 `;
             }
         }
 
-        card.className = `notificacion-card ${estadoClase}`;
+        card.className = `notificacion-card ${claseEstado}`;
         card.innerHTML = contenidoHTML;
         notificacionesLista.appendChild(card);
     });

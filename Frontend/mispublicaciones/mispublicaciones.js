@@ -30,15 +30,15 @@ botonHome.addEventListener("click", function() {
 // Cargar publicaciones del usuario
 async function cargarPublicaciones() {
     try {
-        // Obtener usuario actual
-        const usuarioActual = localStorage.getItem("usuarioActual");
-        if (!usuarioActual) {
+        // Obtener datos del usuario actual
+        const datosUsuarioStr = localStorage.getItem("datosUsuario");
+        if (!datosUsuarioStr) {
             alert("Debes iniciar sesión primero");
             window.location.href = "../login/login.html";
             return;
         }
 
-        const usuario = JSON.parse(usuarioActual);
+        const usuario = JSON.parse(datosUsuarioStr);
         
         // Obtener publicaciones del usuario desde el backend
         postEvent("obtenerMisPublicaciones", { mailUsuario: usuario.mail }, function(response) {
@@ -95,8 +95,8 @@ function mostrarPublicaciones(libros) {
 }
 
 function eliminarLibro(idLibro) {
-    const usuarioActual = localStorage.getItem("usuarioActual");
-    const usuario = JSON.parse(usuarioActual);
+    const datosUsuarioStr = localStorage.getItem("datosUsuario");
+    const usuario = JSON.parse(datosUsuarioStr);
     
     if (confirm("¿Estás seguro de que quieres eliminar esta publicación?")) {
         postEvent("borrarLibro", { id: idLibro, mailUsuario: usuario.mail }, function(response) {

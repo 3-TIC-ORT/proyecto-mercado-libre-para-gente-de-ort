@@ -4,21 +4,31 @@ import { subscribePOSTEvent, startServer, realTimeEvent } from "soquetic";
 //  REGISTRAR USUARIO
 
 subscribePOSTEvent("registrarUsuario", (data) => {
+  console.log("📝 Datos recibidos para registro:", data);
+  
   // Recibe los datos desde el front
   let nombre = data.nombre;
   let apellido = data.apellido;
   let mail = data.mail;
   let sede = data.sede;
   let password = data.contraseña;
-  let fotodeperfil = data.fotodeperfil
+  let fotodeperfil = data.fotodeperfil || null;
   let genero = data.genero;
+  
   // 1️ Leer lo que hay en el archivo
   let texto = fs.readFileSync("Usuarios.json", "utf-8");
 
   // 2️ Convertir ese texto a una lista de objetos
   let lista = JSON.parse(texto);
 
-  // 3️ Crear un nuevo objeto usuario
+  // 3️ Verificar si el usuario ya existe
+  let usuarioExiste = lista.find(u => u.mail === mail);
+  if (usuarioExiste) {
+    console.log("❌ El usuario ya existe:", mail);
+    return { error: "El usuario ya está registrado" };
+  }
+
+  // 4️ Crear un nuevo objeto usuario
   let nuevoUsuario = {
     nombre: nombre,
     apellido: apellido,
@@ -29,16 +39,16 @@ subscribePOSTEvent("registrarUsuario", (data) => {
     genero: genero
   };
 
-  // 4 Agregar el nuevo usuario a la lista
+  // 5️ Agregar el nuevo usuario a la lista
   lista.push(nuevoUsuario);
 
-  // 5️ Volver a convertir a JSON
+  // 6️ Volver a convertir a JSON
   let jsonNuevo = JSON.stringify(lista, null, 2);
 
-  // 6️ Guardar el archivo actualizado
+  // 7️ Guardar el archivo actualizado
   fs.writeFileSync("Usuarios.json", jsonNuevo);
 
-  console.log("Usuario registrado con éxito: " + nombre);
+  console.log("✅ Usuario registrado con éxito:", nombre, apellido);
   return { mensaje: "Usuario registrado con éxito" };
 });
 
@@ -65,7 +75,8 @@ subscribePOSTEvent("loginUsuario", (data) => {
           apellido: lista[i].apellido,
           mail: lista[i].mail,
           sede: lista[i].sede,
-          genero: lista[i].genero
+          genero: lista[i].genero,
+          fotodeperfil: lista[i].fotodeperfil
         }
       };
     }
@@ -75,6 +86,92 @@ subscribePOSTEvent("loginUsuario", (data) => {
     console.log("Usuario o contraseña incorrectos");
     return { error: "Usuario o contraseña incorrectos" };
   }
+});
+
+// ACTUALIZAR PERFIL DE USUARIO
+subscribePOSTEvent("actualizarPerfil", (data) => {
+  let mail = data.mail;
+  let nombre = data.nombre;
+  let apellido = data.apellido;
+  let sede = data.sede;
+  let fotodeperfil = data.fotodeperfil;
+
+  // 1️⃣ ACTUALIZAR USUARIOS.JSON
+  let texto = fs.readFileSync("Usuarios.json", "utf-8");
+  let lista = JSON.parse(texto);
+
+  let usuarioIndex = lista.findIndex(u => u.mail === mail);
+
+  if (usuarioIndex === -1) {
+    console.log("❌ Usuario no encontrado:", mail);
+    return { error: "Usuario no encontrado" };
+  }
+
+  // Actualizar los datos del usuario
+  lista[usuarioIndex].nombre = nombre;
+  lista[usuarioIndex].apellido = apellido;
+  lista[usuarioIndex].sede = sede;
+  if (fotodeperfil) {
+    lista[usuarioIndex].fotodeperfil = fotodeperfil;
+  }
+
+  // Guardar cambios en Usuarios.json
+  let jsonNuevo = JSON.stringify(lista, null, 2);
+  fs.writeFileSync("Usuarios.json", jsonNuevo);
+
+  // 2️⃣ ACTUALIZAR LIBROS.JSON (publicaciones del usuario)
+  let textoLibros = fs.readFileSync("Libros.json", "utf-8");
+  let listaLibros = JSON.parse(textoLibros);
+  
+  let librosActualizados = false;
+  listaLibros.forEach(libro => {
+    if (libro.mailVendedor === mail) {
+      libro.nombreVendedor = nombre;
+      librosActualizados = true;
+    }
+  });
+
+  if (librosActualizados) {
+    let jsonLibros = JSON.stringify(listaLibros, null, 2);
+    fs.writeFileSync("Libros.json", jsonLibros);
+    console.log("✅ Libros del usuario actualizados");
+  }
+
+  // 3️⃣ ACTUALIZAR NOTIFICACIONES.JSON
+  let textoNotificaciones = fs.readFileSync("Notificaciones.json", "utf-8");
+  let listaNotificaciones = JSON.parse(textoNotificaciones);
+  
+  let notificacionesActualizadas = false;
+  listaNotificaciones.forEach(notif => {
+    // Actualizar como vendedor
+    if (notif.mailVendedor === mail) {
+      notif.nombreVendedor = nombre;
+      notificacionesActualizadas = true;
+    }
+    // Actualizar como comprador
+    if (notif.mailComprador === mail) {
+      notif.nombreComprador = nombre;
+      notificacionesActualizadas = true;
+    }
+  });
+
+  if (notificacionesActualizadas) {
+    let jsonNotificaciones = JSON.stringify(listaNotificaciones, null, 2);
+    fs.writeFileSync("Notificaciones.json", jsonNotificaciones);
+    console.log("✅ Notificaciones del usuario actualizadas");
+  }
+
+  console.log("✅ Perfil actualizado completamente:", nombre, apellido);
+  return { 
+    mensaje: "Perfil actualizado exitosamente",
+    usuario: {
+      nombre: nombre,
+      apellido: apellido,
+      mail: mail,
+      sede: sede,
+      fotodeperfil: fotodeperfil
+    }
+  };
 });
 
 subscribePOSTEvent("venderLibro", (data) => {

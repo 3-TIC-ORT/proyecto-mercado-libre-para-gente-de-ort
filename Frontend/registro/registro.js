@@ -15,40 +15,44 @@ botonEntrar.addEventListener("click", function(event) {
   const apellido = document.getElementById("apellido").value;
   const mail = document.getElementById("mail").value;
   const contraseña = document.getElementById("contraseña").value;
-  const repcontraseña = document.getElementById("repcontraseña").value;
   const genero = document.querySelector('input[name="genero"]:checked')?.value;
   const sede = document.querySelector('input[name="sede"]:checked')?.value;
 
-  if (!nombre || !apellido || !mail || !contraseña || !repcontraseña || !genero || !sede) {
+  console.log("Datos capturados:", { nombre, apellido, mail, contraseña, genero, sede });
+
+  if (!nombre || !apellido || !mail || !contraseña || !genero || !sede) {
     alert("Por favor, complete todos los campos");
     return;
   }
 
-  if (contraseña !== repcontraseña) {
-    alert("Las contraseñas no coinciden");
-    return;
-  }
-
-  // Validar que el usuario contenga @
+  // Validar que el email contenga @
   if (!mail.includes("@")) {
     alert("El email debe contener un @");
     return;
   }
 
-  if (contraseña !== repcontraseña) {
-    alert("Las contraseñas no coinciden");
-    return;
-  }
+  const userData = { 
+    nombre: nombre,
+    apellido: apellido,
+    mail: mail,
+    contraseña: contraseña,
+    genero: genero,
+    sede: sede,
+    fotodeperfil: null
+  };
 
-  const userData = { nombre, apellido, mail, contraseña, genero, sede };
+  console.log("Enviando datos al backend:", userData);
 
   postEvent("registrarUsuario", userData, function(response) {
     console.log("Respuesta del servidor:", response);
     
     if (response.mensaje) {
+      alert("Usuario registrado exitosamente");
       window.location.href = "../login/login.html";
     } else if (response.error) {
       alert("Error en el registro: " + response.error);
+    } else {
+      alert("Error desconocido en el registro");
     }
   });
 });

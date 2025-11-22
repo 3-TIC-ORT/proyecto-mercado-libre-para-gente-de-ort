@@ -36,8 +36,9 @@ botonEntrar.addEventListener("click", function(event) {
         // El backend devuelve 'mensaje' si está ok o 'error' si falla
         if (response.mensaje && response.usuario) {
             // Guardar los datos del usuario en localStorage
-            localStorage.setItem("usuarioActual", JSON.stringify(response.usuario));
-            console.log("Usuario guardado en localStorage:", localStorage.getItem("usuarioActual"));
+            localStorage.setItem("datosUsuario", JSON.stringify(response.usuario));
+            localStorage.setItem("usuarioActual", response.usuario.mail);
+            console.log("Usuario guardado en localStorage:", localStorage.getItem("datosUsuario"));
             alert(response.mensaje);
             window.location.href = "../compraoventa/compraoventa.html";
         } else if (response.error) {
