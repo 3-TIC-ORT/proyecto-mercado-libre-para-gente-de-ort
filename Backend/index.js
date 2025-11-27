@@ -4,7 +4,7 @@ import { subscribePOSTEvent, startServer, realTimeEvent } from "soquetic";
 //  REGISTRAR USUARIO
 
 subscribePOSTEvent("registrarUsuario", (data) => {
-  console.log("📝 Datos recibidos para registro:", data);
+  console.log("Datos recibidos para registro:", data);
   
   // Recibe los datos desde el front
   let nombre = data.nombre;
@@ -24,7 +24,7 @@ subscribePOSTEvent("registrarUsuario", (data) => {
   // 3️ Verificar si el usuario ya existe
   let usuarioExiste = lista.find(u => u.mail === mail);
   if (usuarioExiste) {
-    console.log("❌ El usuario ya existe:", mail);
+    console.log("El usuario ya existe:", mail);
     return { error: "El usuario ya está registrado" };
   }
 
@@ -48,7 +48,7 @@ subscribePOSTEvent("registrarUsuario", (data) => {
   // 7️ Guardar el archivo actualizado
   fs.writeFileSync("Usuarios.json", jsonNuevo);
 
-  console.log("✅ Usuario registrado con éxito:", nombre, apellido);
+  console.log("Usuario registrado con éxito:", nombre, apellido);
   return { mensaje: "Usuario registrado con éxito" };
 });
 
@@ -96,7 +96,7 @@ subscribePOSTEvent("actualizarPerfil", (data) => {
   let sede = data.sede;
   let fotodeperfil = data.fotodeperfil;
 
-  // 1️⃣ ACTUALIZAR USUARIOS.JSON
+  // 1️ ACTUALIZAR USUARIOS.JSON
   let texto = fs.readFileSync("Usuarios.json", "utf-8");
   let lista = JSON.parse(texto);
 
@@ -119,7 +119,7 @@ subscribePOSTEvent("actualizarPerfil", (data) => {
   let jsonNuevo = JSON.stringify(lista, null, 2);
   fs.writeFileSync("Usuarios.json", jsonNuevo);
 
-  // 2️⃣ ACTUALIZAR LIBROS.JSON (publicaciones del usuario)
+  // 2️ ACTUALIZAR LIBROS.JSON (publicaciones del usuario)
   let textoLibros = fs.readFileSync("Libros.json", "utf-8");
   let listaLibros = JSON.parse(textoLibros);
   
@@ -134,10 +134,10 @@ subscribePOSTEvent("actualizarPerfil", (data) => {
   if (librosActualizados) {
     let jsonLibros = JSON.stringify(listaLibros, null, 2);
     fs.writeFileSync("Libros.json", jsonLibros);
-    console.log("✅ Libros del usuario actualizados");
+    console.log("Libros del usuario actualizados");
   }
 
-  // 3️⃣ ACTUALIZAR NOTIFICACIONES.JSON
+  // 3️ ACTUALIZAR NOTIFICACIONES.JSON
   let textoNotificaciones = fs.readFileSync("Notificaciones.json", "utf-8");
   let listaNotificaciones = JSON.parse(textoNotificaciones);
   
@@ -158,10 +158,10 @@ subscribePOSTEvent("actualizarPerfil", (data) => {
   if (notificacionesActualizadas) {
     let jsonNotificaciones = JSON.stringify(listaNotificaciones, null, 2);
     fs.writeFileSync("Notificaciones.json", jsonNotificaciones);
-    console.log("✅ Notificaciones del usuario actualizadas");
+    console.log("Notificaciones del usuario actualizadas");
   }
 
-  console.log("✅ Perfil actualizado completamente:", nombre, apellido);
+  console.log("Perfil actualizado completamente:", nombre, apellido);
   return { 
     mensaje: "Perfil actualizado exitosamente",
     usuario: {
@@ -242,13 +242,13 @@ subscribePOSTEvent("borrarLibro", (data) => {
   let libroIndex = listaLibros.findIndex(l => l.id === idLibro);
 
   if (libroIndex === -1) {
-    console.log("❌ No se encontró el libro con ID:", idLibro);
+    console.log("No se encontró el libro con ID:", idLibro);
     return { error: "Libro no encontrado" };
   }
 
   // 3️ Verificar que el usuario sea el dueño
   if (listaLibros[libroIndex].mailVendedor !== mailUsuario) {
-    console.log("❌ Usuario no autorizado para borrar este libro");
+    console.log("Usuario no autorizado para borrar este libro");
     return { error: "No tienes permiso para borrar este libro" };
   }
 
@@ -259,7 +259,7 @@ subscribePOSTEvent("borrarLibro", (data) => {
   let jsonLibro = JSON.stringify(listaLibros, null, 2);
   fs.writeFileSync("Libros.json", jsonLibro);
 
-  console.log("🗑️ Libro eliminado:", libroEliminado.libro);
+  console.log("Libro eliminado:", libroEliminado.libro);
   return { mensaje: "Libro eliminado con éxito", libroEliminado: libroEliminado };
 });
 
