@@ -103,7 +103,7 @@ subscribePOSTEvent("actualizarPerfil", (data) => {
   let usuarioIndex = lista.findIndex(u => u.mail === mail);
 
   if (usuarioIndex === -1) {
-    console.log("❌ Usuario no encontrado:", mail);
+    console.log("Usuario no encontrado:", mail);
     return { error: "Usuario no encontrado" };
   }
 
@@ -229,7 +229,7 @@ subscribePOSTEvent("venderLibro", (data) => {
   return { mensaje: "Libro publicado con éxito" };
 });
 
-// 🗑️ BORRAR LIBRO
+// BORRAR LIBRO
 subscribePOSTEvent("borrarLibro", (data) => {
   let idLibro = data.id;
   let mailUsuario = data.mailUsuario; // Para verificar que solo el dueño pueda borrar
