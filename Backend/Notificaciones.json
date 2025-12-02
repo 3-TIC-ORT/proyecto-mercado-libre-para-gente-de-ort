@@ -10,18 +10,5 @@
     "nombreComprador": "romero",
     "estado": "aceptado",
     "fecha": "2025-11-22T01:30:19.851Z"
-  },
-  {
-    "id": 1763775323891,
-    "tipo": "respuesta",
-    "idLibro": 1763774515947,
-    "libroNombre": "Libro de hebreo",
-    "mailVendedor": "sebitaszvalb@gmail.com",
-    "nombreVendedor": "sebi",
-    "mailComprador": "rome@gmail.com",
-    "nombreComprador": "romero",
-    "estado": "aceptado",
-    "mensaje": "Tu pedido del libro \"Libro de hebreo\" fue aceptado por sebi",
-    "fecha": "2025-11-22T01:35:23.891Z"
   }
 ]
