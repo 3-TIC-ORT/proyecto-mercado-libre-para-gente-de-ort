@@ -451,6 +451,60 @@ subscribePOSTEvent("obtenerNotificaciones", (data) => {
   return { notificaciones: misNotificaciones };
 });
 
+// OBTENER INFORMACIÓN DE USUARIO POR EMAIL
+subscribePOSTEvent("obtenerUsuario", (data) => {
+  let mail = data.mail;
+
+  // 1️ Leer usuarios
+  let textoUsuarios = fs.readFileSync("Usuarios.json", "utf-8");
+  let listaUsuarios = JSON.parse(textoUsuarios);
+
+  // 2️ Buscar usuario por mail
+  let usuario = listaUsuarios.find(u => u.mail === mail);
+
+  if (!usuario) {
+    console.log("Usuario no encontrado:", mail);
+    return { error: "Usuario no encontrado" };
+  }
+
+  // 3️ Devolver datos del usuario (sin contraseña)
+  console.log("Usuario encontrado:", usuario.nombre);
+  return { 
+    usuario: {
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      mail: usuario.mail,
+      sede: usuario.sede,
+      genero: usuario.genero,
+      fotodeperfil: usuario.fotodeperfil
+    }
+  };
+});
+
+// OBTENER MÚLTIPLES USUARIOS (para notificaciones e infoLibro)
+subscribePOSTEvent("obtenerVariosUsuarios", (data) => {
+  let mails = data.mails; // Array de emails
+
+  // 1️ Leer usuarios
+  let textoUsuarios = fs.readFileSync("Usuarios.json", "utf-8");
+  let listaUsuarios = JSON.parse(textoUsuarios);
+
+  // 2️ Filtrar usuarios que coincidan con los emails
+  let usuariosEncontrados = listaUsuarios
+    .filter(u => mails.includes(u.mail))
+    .map(u => ({
+      nombre: u.nombre,
+      apellido: u.apellido,
+      mail: u.mail,
+      sede: u.sede,
+      genero: u.genero,
+      fotodeperfil: u.fotodeperfil
+    }));
+
+  console.log(`Encontrados ${usuariosEncontrados.length} usuarios`);
+  return { usuarios: usuariosEncontrados };
+});
+
 //  ARRANCAR SERVIDOR SOQUETIC
 
 startServer(3000, true);

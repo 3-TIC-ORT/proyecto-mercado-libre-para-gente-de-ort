@@ -52,29 +52,22 @@ if (!id) {
             return;
         }
 
-        // Obtener foto de perfil del vendedor
+        // Obtener foto de perfil del vendedor desde el backend
         obtenerFotoVendedor(libro);
     });
 }
 
 function obtenerFotoVendedor(libro) {
-    // Leer usuarios.json para obtener la foto de perfil del vendedor
-    postEvent('loginUsuario', { mail: libro.mailVendedor, password: 'fake' }, function(response) {
-        // Esto fallará pero necesitamos otro endpoint
-        renderizarDetalle(libro, '../perfil/cuenta 2.png');
+    // Solicitar información del vendedor al backend
+    postEvent('obtenerUsuario', { mail: libro.mailVendedor }, function(response) {
+        let fotoVendedor = '../perfil/cuenta 2.png'; // Foto por defecto
+        
+        if (response.usuario && response.usuario.fotodeperfil) {
+            fotoVendedor = response.usuario.fotodeperfil;
+        }
+        
+        renderizarDetalle(libro, fotoVendedor);
     });
-    
-    // Por ahora, buscar en usuarios si están cargados o usar foto por defecto
-    fetch('../../Backend/Usuarios.json')
-        .then(response => response.json())
-        .then(usuarios => {
-            const vendedor = usuarios.find(u => u.mail === libro.mailVendedor);
-            const fotoVendedor = vendedor && vendedor.fotodeperfil ? vendedor.fotodeperfil : '../perfil/cuenta 2.png';
-            renderizarDetalle(libro, fotoVendedor);
-        })
-        .catch(() => {
-            renderizarDetalle(libro, '../perfil/cuenta 2.png');
-        });
 }
 
 function renderizarDetalle(libro, fotoVendedor){

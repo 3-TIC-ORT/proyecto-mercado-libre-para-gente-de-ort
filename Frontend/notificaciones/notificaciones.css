@@ -10,7 +10,6 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
 .encabezado {
     background-color: #E2E2E2;
     height: 180px;
@@ -75,14 +74,12 @@ body {
     display: block;
 }
 
-/* Línea negra divisoria */
 .lineagruesa {
     width: 100%;
     height: 10px;
     background-color: #000000;
 }
 
-/* Contenedor principal */
 .contenedor {
     max-width: 1400px;
     margin: 40px 0 40px 80px;
@@ -96,7 +93,6 @@ body {
     align-items: flex-start;
 }
 
-/* Tarjeta de notificación */
 .notificacion-card {
     background-color: #FFFFFF;
     border-radius: 20px;
@@ -110,7 +106,7 @@ body {
     min-height: 100px;
 }
 
-/* Foto de perfil */
+
 .notif-avatar {
     width: 90px;
     height: 90px;
@@ -120,7 +116,6 @@ body {
     flex-shrink: 0;
 }
 
-/* Contenido de la notificación */
 .notif-content {
     flex: 1;
     display: flex;
@@ -144,7 +139,6 @@ body {
     margin: 0;
 }
 
-/* Botones de acción */
 .notif-acciones {
     position: absolute;
     bottom: 20px;
@@ -157,7 +151,7 @@ body {
 .btn-rechazar {
     padding: 12px 30px;
     border: 2px solid #000000;
-    border-radius: 10px;
+    border-radius: 3px;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 18px;
@@ -166,32 +160,28 @@ body {
 }
 
 .btn-aceptar {
-    background-color: #4CAF50;
-    color: #FFFFFF;
+    background-color: #00FF00;
+    color: #000000;
 }
 
 .btn-aceptar:hover {
-    background-color: #45a049;
     transform: scale(1.05);
 }
 
 .btn-rechazar {
-    background-color: #F44336;
-    color: #FFFFFF;
+    background-color: #cf2417;
+    color: #000000;
 }
 
 .btn-rechazar:hover {
-    background-color: #da190b;
     transform: scale(1.05);
 }
 
-/* Notificaciones aceptadas/rechazadas (sin botones) */
 .notificacion-card.aceptada,
 .notificacion-card.rechazada {
     opacity: 0.7;
 }
 
-/* Mensaje vacío */
 .mensaje-vacio {
     text-align: center;
     padding: 60px;

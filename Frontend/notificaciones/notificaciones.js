@@ -47,7 +47,7 @@ function cargarNotificaciones() {
     postEvent("obtenerNotificaciones", {
         mailUsuario: usuario.mail
     }, function(respuesta) {
-        if (respuesta.notificaciones) {
+        if (respuesta.notificaciones && respuesta.notificaciones.length > 0) {
             // Cargar fotos de perfil antes de mostrar notificaciones
             cargarFotosUsuarios(respuesta.notificaciones, usuario.mail);
         } else {
@@ -56,35 +56,45 @@ function cargarNotificaciones() {
                     <h3>No tienes notificaciones</h3>
                 </div>
             `;
+            notifTitle.textContent = "0 notificaciones";
         }
     });
 }
 
-// Función para cargar fotos de usuarios desde Usuarios.json
-async function cargarFotosUsuarios(notificaciones, mailUsuario) {
-    try {
-        const response = await fetch('../../Backend/Usuarios.json');
-        const usuarios = await response.json();
-        
-        // Agregar fotos a las notificaciones
-        notificaciones.forEach(notif => {
-            const comprador = usuarios.find(u => u.mail === notif.mailComprador);
-            const vendedor = usuarios.find(u => u.mail === notif.mailVendedor);
+// Función para cargar fotos de usuarios desde el backend
+function cargarFotosUsuarios(notificaciones, mailUsuario) {
+    // Obtener lista de emails únicos de compradores y vendedores
+    const emails = new Set();
+    notificaciones.forEach(notif => {
+        if (notif.mailComprador) emails.add(notif.mailComprador);
+        if (notif.mailVendedor) emails.add(notif.mailVendedor);
+    });
+
+    // Solicitar información de usuarios al backend
+    postEvent("obtenerVariosUsuarios", {
+        mails: Array.from(emails)
+    }, function(respuesta) {
+        if (respuesta.usuarios) {
+            const usuarios = respuesta.usuarios;
             
-            notif.fotoComprador = comprador && comprador.fotodeperfil ? comprador.fotodeperfil : '../perfil/cuenta 2.png';
-            notif.fotoVendedor = vendedor && vendedor.fotodeperfil ? vendedor.fotodeperfil : '../perfil/cuenta 2.png';
-        });
+            // Agregar fotos a las notificaciones
+            notificaciones.forEach(notif => {
+                const comprador = usuarios.find(u => u.mail === notif.mailComprador);
+                const vendedor = usuarios.find(u => u.mail === notif.mailVendedor);
+                
+                notif.fotoComprador = comprador && comprador.fotodeperfil ? comprador.fotodeperfil : '../perfil/cuenta 2.png';
+                notif.fotoVendedor = vendedor && vendedor.fotodeperfil ? vendedor.fotodeperfil : '../perfil/cuenta 2.png';
+            });
+        } else {
+            // Si falla, usar fotos por defecto
+            notificaciones.forEach(notif => {
+                notif.fotoComprador = '../perfil/cuenta 2.png';
+                notif.fotoVendedor = '../perfil/cuenta 2.png';
+            });
+        }
         
         mostrarNotificaciones(notificaciones, mailUsuario);
-    } catch (error) {
-        console.error("Error al cargar fotos de usuarios:", error);
-        // Mostrar notificaciones sin fotos si falla
-        notificaciones.forEach(notif => {
-            notif.fotoComprador = '../perfil/cuenta 2.png';
-            notif.fotoVendedor = '../perfil/cuenta 2.png';
-        });
-        mostrarNotificaciones(notificaciones, mailUsuario);
-    }
+    });
 }
 
 // Función para mostrar las notificaciones
