@@ -1,4 +1,3 @@
-// Conectar al servidor
 connect2Server(3000);
 
 const Botonvolver = document.getElementById("botonvolver");
@@ -27,10 +26,8 @@ botonHome.addEventListener("click", function() {
     window.location.href = "../compraoventa/compraoventa.html";
 });
 
-// Cargar publicaciones del usuario
 async function cargarPublicaciones() {
     try {
-        // Obtener datos del usuario actual
         const datosUsuarioStr = localStorage.getItem("datosUsuario");
         if (!datosUsuarioStr) {
             alert("Debes iniciar sesión primero");
@@ -40,7 +37,6 @@ async function cargarPublicaciones() {
 
         const usuario = JSON.parse(datosUsuarioStr);
         
-        // Obtener publicaciones del usuario desde el backend
         postEvent("obtenerMisPublicaciones", { mailUsuario: usuario.mail }, function(response) {
             if (response.libros) {
                 mostrarPublicaciones(response.libros);
@@ -56,12 +52,10 @@ async function cargarPublicaciones() {
 function mostrarPublicaciones(libros) {
     const contenedor = document.querySelector(".grid-publicaciones");
     
-    // Limpiar publicaciones anteriores (mantener el botón de agregar)
     const botonAgregar = document.getElementById("botonagregar");
     contenedor.innerHTML = "";
     contenedor.appendChild(botonAgregar);
     
-    // Agregar cada libro como una card
     libros.forEach(libro => {
         const card = document.createElement("div");
         card.className = "card";
@@ -85,7 +79,6 @@ function mostrarPublicaciones(libros) {
         contenedor.appendChild(card);
     });
     
-    // Agregar eventos a los botones de eliminar
     document.querySelectorAll(".btn-eliminar").forEach(btn => {
         btn.addEventListener("click", function() {
             const idLibro = parseInt(this.getAttribute("data-id"));
@@ -102,7 +95,7 @@ function eliminarLibro(idLibro) {
         postEvent("borrarLibro", { id: idLibro, mailUsuario: usuario.mail }, function(response) {
             if (response.mensaje) {
                 alert(response.mensaje);
-                cargarPublicaciones(); // Recargar la lista
+                cargarPublicaciones();
             } else if (response.error) {
                 alert(response.error);
             }
@@ -110,5 +103,4 @@ function eliminarLibro(idLibro) {
     }
 }
 
-// Cargar publicaciones al iniciar la página
 cargarPublicaciones();

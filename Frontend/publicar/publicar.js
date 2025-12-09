@@ -1,11 +1,9 @@
-// Conectar al servidor
 connect2Server(3000);
 
 const buscador = document.getElementById("buscador");
 const botonVolver = document.getElementById("botonvolver");
 const botonPublicar = document.getElementById("botonpublicar");
 
-// Funcionalidad de búsqueda
 buscador.addEventListener("keypress", function(e) {
     if (e.key === "Enter") {
         const terminoBusqueda = buscador.value.trim();
@@ -16,17 +14,14 @@ buscador.addEventListener("keypress", function(e) {
     }
 });
 
-// Botones de navegación
 botonVolver.addEventListener("click", function() {
     window.location.href = "../compraoventa/compraoventa.html";
 });
 
-// Preview de imagen - hacer click en toda el área
 const portadaContainer = document.querySelector(".portada");
 const inputPortada = document.getElementById("inputPortada");
 const imgPortada = document.querySelector(".img-portada");
 
-// Hacer que todo el contenedor abra el selector de archivos
 portadaContainer.addEventListener("click", function() {
     inputPortada.click();
 });
@@ -43,11 +38,9 @@ inputPortada.addEventListener("change", function(e) {
     }
 });
 
-// Publicar libro
 botonPublicar.addEventListener("click", async function(event) {
     event.preventDefault();
 
-    // Capturar datos del formulario
     const titulo = document.getElementById("titulo").value;
     const aula = document.getElementById("aula").value;
     const año = document.getElementById("año").value;
@@ -55,14 +48,13 @@ botonPublicar.addEventListener("click", async function(event) {
     const precio = document.getElementById("precio").value;
     const portada = document.getElementById("inputPortada").files[0];
 
-    // Validar campos
     if (!titulo || !aula || año === "Seleccionar año" || materia === "Seleccionar materia" || !precio) {
         alert("Por favor, completa todos los campos obligatorios");
         return;
     }
 
     try {
-        // Obtener datos del usuario actual del localStorage
+
         const datosUsuarioStr = localStorage.getItem("datosUsuario");
         if (!datosUsuarioStr) {
             alert("Debes iniciar sesión para publicar un libro");
@@ -72,13 +64,11 @@ botonPublicar.addEventListener("click", async function(event) {
 
         const usuario = JSON.parse(datosUsuarioStr);
 
-        // Convertir imagen a base64 si existe
         let imagenBase64 = "sin-foto.jpg";
         if (portada) {
             imagenBase64 = await convertirImagenABase64(portada);
         }
 
-        // Crear objeto del libro para enviar al backend
         const datosLibro = {
             libro: titulo,
             materia: materia,
@@ -94,7 +84,6 @@ botonPublicar.addEventListener("click", async function(event) {
 
         console.log("Datos del libro a publicar:", datosLibro);
 
-        // Enviar al backend usando SoqueTIC
         postEvent("venderLibro", datosLibro, function(respuesta) {
             if (respuesta.error) {
                 alert("Error al publicar: " + respuesta.error);
@@ -108,7 +97,6 @@ botonPublicar.addEventListener("click", async function(event) {
         alert("Hubo un error al publicar el libro. Por favor, intenta de nuevo.");
     }
 });
-// Función auxiliar para convertir imagen a base64
 function convertirImagenABase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();

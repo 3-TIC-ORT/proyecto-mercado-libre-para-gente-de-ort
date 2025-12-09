@@ -1,4 +1,3 @@
-// Verificar si hay sesión iniciada
 const usuarioActual = localStorage.getItem("usuarioActual");
 console.log("Usuario en sesión:", usuarioActual);
 
@@ -15,12 +14,10 @@ const botonNotificaciones = document.getElementById("botonnotificaciones");
 const botonPerfil = document.getElementById("botonperfil");
 const buscador = document.getElementById("buscador");
 
-// Funcionalidad de búsqueda - redirige al catálogo con búsqueda
 buscador.addEventListener("keypress", function(e) {
     if (e.key === "Enter") {
         const terminoBusqueda = buscador.value.trim();
         if (terminoBusqueda !== "") {
-            // Guardar término de búsqueda y redirigir al catálogo
             localStorage.setItem("terminoBusqueda", terminoBusqueda);
             window.location.href = "../catalogo/catalogo.html";
         }

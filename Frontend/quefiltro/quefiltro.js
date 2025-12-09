@@ -3,7 +3,6 @@ const botonMateria = document.getElementById("botonmateria");
 const botonVolver = document.getElementById("botonvolver");
 const buscador = document.getElementById("buscador");
 
-// Funcionalidad de búsqueda
 buscador.addEventListener("keypress", function(e) {
     if (e.key === "Enter") {
         const terminoBusqueda = buscador.value.trim();

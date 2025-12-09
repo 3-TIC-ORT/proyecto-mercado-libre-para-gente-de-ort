@@ -1,4 +1,3 @@
-// Conectar al servidor
 connect2Server(3000);
 
 const botonVolver = document.getElementById("botonvolver");
@@ -25,7 +24,6 @@ botonEntrar.addEventListener("click", function(event) {
     return;
   }
 
-  // Validar que el email contenga @
   if (!mail.includes("@")) {
     alert("El email debe contener un @");
     return;
