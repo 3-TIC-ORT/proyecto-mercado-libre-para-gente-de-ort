@@ -112,7 +112,7 @@ function renderizarDetalle(libro, fotoVendedor){
     }
 }
 
-function pedirLibroDetalle(idLibro, mailVendedor, nombreVendedor, nombreLibro){
+function pedirLibroDetalle(idLibro, mailVendedor, nombreVendedor, nombreLibro) {
     const datosUsuarioStr = localStorage.getItem('datosUsuario');
     if (!datosUsuarioStr){
         alert('Debes iniciar sesión para pedir un libro');
@@ -122,23 +122,28 @@ function pedirLibroDetalle(idLibro, mailVendedor, nombreVendedor, nombreLibro){
 
     const usuario = JSON.parse(datosUsuarioStr);
 
-    // Prevenir pedir el propio libro
     if (usuario.mail === mailVendedor){
         alert('No puedes pedir tu propio libro');
         return;
     }
 
-    postEvent('pedirLibro', {
-        idLibro: idLibro,
-        mailComprador: usuario.mail,
-        nombreComprador: usuario.nombre
-    }, function(respuesta){
-        if (respuesta.error){
-            alert('Error al enviar pedido: ' + respuesta.error);
-        } else {
-            alert(`¡Pedido enviado! ${nombreVendedor} recibirá una notificación con tu solicitud.`);
-            // Opcional: volver al catálogo
-            // window.location.href = 'catalogo.html';
-        }
+    // 👉 DATOS QUE ENVÍAS AL TEMPLATE DE EMAILJS
+    const templateParams = {
+        mailVendedor: mailVendedor, // <--- agregar
+        nombreVendedor,
+        nombreComprador: usuario.nombre,
+        libro: nombreLibro,
+        mailComprador: usuario.mail
+    };
+    
+
+    // 👉 ENVÍO DEL EMAIL
+    emailjs.send("service_17ffctj", "template_punaxpk", templateParams)
+    .then(() => {
+        alert(`¡Pedido enviado! ${nombreVendedor} recibirá un correo con tu solicitud.`);
+    })
+    .catch((error) => {
+        console.error("Error al enviar email: ", error);
+        alert("Hubo un problema enviando el correo.");
     });
 }
