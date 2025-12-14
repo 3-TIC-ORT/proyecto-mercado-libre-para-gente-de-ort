@@ -127,17 +127,28 @@ function pedirLibroDetalle(idLibro, mailVendedor, nombreVendedor, nombreLibro) {
         return;
     }
 
-    // 👉 DATOS QUE ENVÍAS AL TEMPLATE DE EMAILJS
+    // 👉 Crear notificación en el backend
+    postEvent("pedirLibro", {
+        idLibro: idLibro,
+        mailComprador: usuario.mail,
+        nombreComprador: usuario.nombre
+    }, function(respuesta) {
+        if (respuesta.error) {
+            console.error("Error al crear notificación:", respuesta.error);
+        } else {
+            console.log("Notificación creada exitosamente");
+        }
+    });
+
+    // 👉 ENVÍO DEL EMAIL (independiente de la notificación)
     const templateParams = {
-        mailVendedor: mailVendedor, // <--- agregar
-        nombreVendedor,
+        mailVendedor: mailVendedor,
+        nombreVendedor: nombreVendedor,
         nombreComprador: usuario.nombre,
         libro: nombreLibro,
         mailComprador: usuario.mail
     };
     
-
-    // 👉 ENVÍO DEL EMAIL
     emailjs.send("service_17ffctj", "template_punaxpk", templateParams)
     .then(() => {
         alert(`¡Pedido enviado! ${nombreVendedor} recibirá un correo con tu solicitud.`);

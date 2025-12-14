@@ -105,3 +105,19 @@ function convertirImagenABase64(file) {
         reader.readAsDataURL(file);
     });
 }
+
+
+const BotonNotis = document.getElementById("botonnotificaciones");
+BotonNotis.addEventListener("click", function() {
+    window.location.href = "../notificaciones/notificaciones.html";
+});
+
+const BotonPerfil = document.getElementById("botonperfil");
+BotonPerfil.addEventListener("click", function() {
+    window.location.href = "../perfil/perfil.html";
+});
+
+const botonHome = document.getElementById("botonhome");
+botonHome.addEventListener("click", function() {
+    window.location.href = "../compraoventa/compraoventa.html";
+});
