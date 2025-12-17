@@ -116,8 +116,6 @@ function mostrarNotificaciones(notificaciones, mailUsuario) {
     notificacionesLista.innerHTML = "";
 
     notificaciones.forEach(notif => {
-        const card = document.createElement("div");
-        
         // Determinar si el usuario es el vendedor
         const esVendedor = notif.mailVendedor === mailUsuario;
         
@@ -185,9 +183,13 @@ function mostrarNotificaciones(notificaciones, mailUsuario) {
             }
         }
 
-        card.className = `notificacion-card ${claseEstado}`;
-        card.innerHTML = contenidoHTML;
-        notificacionesLista.appendChild(card);
+        // Solo crear y agregar la card SI tiene contenido
+        if (contenidoHTML !== "") {
+            const card = document.createElement("div");
+            card.className = `notificacion-card ${claseEstado}`;
+            card.innerHTML = contenidoHTML;
+            notificacionesLista.appendChild(card);
+        }
     });
 }
 

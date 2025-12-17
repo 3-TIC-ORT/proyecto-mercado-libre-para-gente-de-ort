@@ -99,7 +99,10 @@ function renderizarDetalle(libro, fotoVendedor){
     `;
 
     const botonPedir = document.getElementById('botonPedir');
-    botonPedir.addEventListener('click', () => pedirLibroDetalle(libro.id, libro.mailVendedor, libro.nombreVendedor, libro.libro));
+    botonPedir.addEventListener('click', (event) => {
+        event.preventDefault(); // Previene recarga de página
+        pedirLibroDetalle(libro.id, libro.mailVendedor, libro.nombreVendedor, libro.libro);
+    });
 
     // Deshabilitar si el usuario es el propio vendedor
     const datosUsuarioStr = localStorage.getItem('datosUsuario');
@@ -127,6 +130,10 @@ function pedirLibroDetalle(idLibro, mailVendedor, nombreVendedor, nombreLibro) {
         return;
     }
 
+    // Variable para rastrear si se completaron ambos procesos
+    let notificacionEnviada = false;
+    let emailEnviado = false;
+
     // 👉 Crear notificación en el backend
     postEvent("pedirLibro", {
         idLibro: idLibro,
@@ -135,8 +142,11 @@ function pedirLibroDetalle(idLibro, mailVendedor, nombreVendedor, nombreLibro) {
     }, function(respuesta) {
         if (respuesta.error) {
             console.error("Error al crear notificación:", respuesta.error);
+            alert("Error al enviar la notificación: " + respuesta.error);
         } else {
             console.log("Notificación creada exitosamente");
+            notificacionEnviada = true;
+            verificarYMostrarMensaje();
         }
     });
 
@@ -151,10 +161,22 @@ function pedirLibroDetalle(idLibro, mailVendedor, nombreVendedor, nombreLibro) {
     
     emailjs.send("service_17ffctj", "template_punaxpk", templateParams)
     .then(() => {
-        alert(`¡Pedido enviado! ${nombreVendedor} recibirá un correo con tu solicitud.`);
+        console.log("Email enviado exitosamente");
+        emailEnviado = true;
+        verificarYMostrarMensaje();
     })
     .catch((error) => {
         console.error("Error al enviar email: ", error);
-        alert("Hubo un problema enviando el correo.");
+        emailEnviado = false;
+        verificarYMostrarMensaje();
     });
+
+    // Función para mostrar mensaje cuando ambos procesos terminen
+    function verificarYMostrarMensaje() {
+        if (notificacionEnviada && emailEnviado) {
+            alert(`¡Pedido enviado exitosamente! ${nombreVendedor} recibirá un correo y una notificación con tu solicitud.`);
+        } else if (notificacionEnviada && !emailEnviado) {
+            alert(`¡Pedido enviado! La notificación fue creada, pero hubo un problema enviando el correo.`);
+        }
+    }
 }
